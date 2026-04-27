@@ -1,0 +1,13 @@
+{
+  "errors": {
+    "pairing_failed": "Koppelen mislukt. Controleer UUID, serienummer en controlecode.",
+    "auth_failed":    "Authenticatie mislukt. Koppel het apparaat opnieuw."
+  },
+  "pair": {
+    "check_code": {
+      "label": "Controlecode",
+      "hint":  "Te vinden op het batterijlabel of in de Quatt-app",
+      "next":  "Volgende"
+    }
+  }
+}

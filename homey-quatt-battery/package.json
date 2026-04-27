@@ -1,0 +1,16 @@
+{
+  "name": "io.quatt.battery",
+  "version": "1.0.0",
+  "description": "Quatt Home Battery integration for Homey",
+  "main": "app.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "lint": "homey app validate"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "homey": "latest"
+  }
+}
