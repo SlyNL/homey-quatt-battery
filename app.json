@@ -1,0 +1,432 @@
+{
+  "id": "io.quatt.battery",
+  "version": "1.0.0",
+  "compatibility": ">=12.0.0",
+  "sdk": 3,
+  "name": {
+    "en": "Quatt Home Battery",
+    "nl": "Quatt Thuisbatterij"
+  },
+  "description": {
+    "en": "Integrate your Quatt Home Battery with Homey",
+    "nl": "Verbind je Quatt Thuisbatterij met Homey"
+  },
+  "category": [
+    "energy"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  },
+  "author": {
+    "name": "Community",
+    "email": "community@example.com"
+  },
+  "drivers": [
+    {
+      "id": "quatt_home_battery",
+      "name": {
+        "en": "Quatt Home Battery",
+        "nl": "Quatt Thuisbatterij"
+      },
+      "class": "battery",
+      "capabilities": [
+        "measure_battery",
+        "measure_power",
+        "meter_power.charged",
+        "meter_power.discharged",
+        "quatt_power_flow_direction",
+        "quatt_control_action",
+        "quatt_control_mode",
+        "quatt_capacity_kwh",
+        "quatt_savings_total",
+        "quatt_savings_yesterday"
+      ],
+      "capabilitiesOptions": {
+        "measure_battery": {
+          "title": {
+            "en": "State of Charge",
+            "nl": "Laadtoestand"
+          }
+        },
+        "measure_power": {
+          "title": {
+            "en": "Power (+ charging / − discharging)",
+            "nl": "Vermogen (+ laden / − ontladen)"
+          }
+        },
+        "meter_power.charged": {
+          "title": {
+            "en": "Total energy charged",
+            "nl": "Totaal geladen energie"
+          }
+        },
+        "meter_power.discharged": {
+          "title": {
+            "en": "Total energy discharged",
+            "nl": "Totaal ontladen energie"
+          }
+        },
+        "quatt_power_flow_direction": {
+          "title": {
+            "en": "Power flow direction",
+            "nl": "Stroomrichting"
+          }
+        },
+        "quatt_control_action": {
+          "title": {
+            "en": "Control action",
+            "nl": "Besturingsactie"
+          }
+        },
+        "quatt_control_mode": {
+          "title": {
+            "en": "Control mode",
+            "nl": "Besturingsmodus"
+          }
+        },
+        "quatt_capacity_kwh": {
+          "title": {
+            "en": "Battery capacity",
+            "nl": "Batterijcapaciteit"
+          }
+        },
+        "quatt_savings_total": {
+          "title": {
+            "en": "Total savings",
+            "nl": "Totale besparing"
+          }
+        },
+        "quatt_savings_yesterday": {
+          "title": {
+            "en": "Yesterday's savings",
+            "nl": "Besparing gisteren"
+          }
+        }
+      },
+      "images": {
+        "small": "/drivers/quatt_home_battery/assets/images/small.png",
+        "large": "/drivers/quatt_home_battery/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "pair",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "UUID (access key)",
+              "nl": "UUID (toegangssleutel)"
+            },
+            "usernamePlaceholder": {
+              "en": "BAT-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+              "nl": "BAT-a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+            },
+            "passwordLabel": {
+              "en": "Serial number",
+              "nl": "Serienummer"
+            },
+            "passwordPlaceholder": {
+              "en": "QOD031024012345",
+              "nl": "QOD031024012345"
+            }
+          }
+        },
+        {
+          "id": "check_code"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "id": "poll_interval",
+          "type": "number",
+          "label": {
+            "en": "Poll interval (minutes)",
+            "nl": "Pollinginterval (minuten)"
+          },
+          "value": 1,
+          "min": 1,
+          "max": 60,
+          "hint": {
+            "en": "How often to refresh data (minutes). Lower = smoother graphs.",
+            "nl": "Hoe vaak data ophalen (minuten). Lager = vloeiendere grafieken."
+          }
+        },
+        {
+          "id": "solar_capacity_kwp",
+          "type": "number",
+          "label": {
+            "en": "Solar capacity (kWp)",
+            "nl": "Zonnepanelen capaciteit (kWp)"
+          },
+          "value": 0,
+          "min": 0,
+          "max": 50,
+          "hint": {
+            "en": "Used by Quatt for energy-flow calculations",
+            "nl": "Gebruikt door Quatt voor energiestroomberekeningen"
+          }
+        }
+      ],
+      "energy": {
+        "homeBattery": true,
+        "batteryCapacitykWh": 10,
+        "meterPowerImportedCapability": "meter_power.charged",
+        "meterPowerExportedCapability": "meter_power.discharged"
+      }
+    }
+  ],
+  "capabilities": {
+    "quatt_power_flow_direction": {
+      "type": "string",
+      "title": {
+        "en": "Power flow direction",
+        "nl": "Stroomrichting"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_power_flow_direction.svg"
+    },
+    "quatt_control_action": {
+      "type": "string",
+      "title": {
+        "en": "Control action",
+        "nl": "Besturingsactie"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_control_action.svg"
+    },
+    "quatt_control_mode": {
+      "type": "string",
+      "title": {
+        "en": "Control mode",
+        "nl": "Besturingsmodus"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_control_mode.svg"
+    },
+    "quatt_capacity_kwh": {
+      "type": "number",
+      "title": {
+        "en": "Battery capacity",
+        "nl": "Batterijcapaciteit"
+      },
+      "units": {
+        "en": "kWh"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_capacity_kwh.svg"
+    },
+    "quatt_savings_total": {
+      "type": "number",
+      "title": {
+        "en": "Total savings",
+        "nl": "Totale besparing"
+      },
+      "units": {
+        "en": "€"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_savings_total.svg"
+    },
+    "quatt_savings_yesterday": {
+      "type": "number",
+      "title": {
+        "en": "Yesterday's savings",
+        "nl": "Besparing gisteren"
+      },
+      "units": {
+        "en": "€"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_savings_yesterday.svg"
+    }
+  },
+  "flow": {
+    "triggers": [
+      {
+        "id": "battery_soc_below",
+        "title": {
+          "en": "Battery charge drops below",
+          "nl": "Batterijlading daalt onder"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=quatt_home_battery"
+          },
+          {
+            "name": "threshold",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": {
+              "en": "Percentage (%)",
+              "nl": "Percentage (%)"
+            }
+          }
+        ],
+        "titleFormatted": {
+          "en": "Battery charge drops below [[threshold]]%",
+          "nl": "Batterijlading daalt onder [[threshold]]%"
+        }
+      },
+      {
+        "id": "battery_soc_above",
+        "title": {
+          "en": "Battery charge rises above",
+          "nl": "Batterijlading stijgt boven"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=quatt_home_battery"
+          },
+          {
+            "name": "threshold",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": {
+              "en": "Percentage (%)",
+              "nl": "Percentage (%)"
+            }
+          }
+        ],
+        "titleFormatted": {
+          "en": "Battery charge rises above [[threshold]]%",
+          "nl": "Batterijlading stijgt boven [[threshold]]%"
+        }
+      },
+      {
+        "id": "battery_charging",
+        "title": {
+          "en": "Battery starts charging",
+          "nl": "Batterij begint met laden"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=quatt_home_battery"
+          }
+        ]
+      },
+      {
+        "id": "battery_discharging",
+        "title": {
+          "en": "Battery starts discharging",
+          "nl": "Batterij begint met ontladen"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=quatt_home_battery"
+          }
+        ]
+      },
+      {
+        "id": "battery_idle",
+        "title": {
+          "en": "Battery becomes idle",
+          "nl": "Batterij wordt inactief"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=quatt_home_battery"
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "battery_soc_is_above",
+        "title": {
+          "en": "Battery charge !{{is|is not}} above",
+          "nl": "Batterijlading !{{is|is niet}} boven"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=quatt_home_battery"
+          },
+          {
+            "name": "threshold",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": {
+              "en": "Percentage (%)",
+              "nl": "Percentage (%)"
+            }
+          }
+        ],
+        "titleFormatted": {
+          "en": "Battery charge is above [[threshold]]%",
+          "nl": "Batterijlading is boven [[threshold]]%"
+        }
+      },
+      {
+        "id": "battery_is_charging",
+        "title": {
+          "en": "Battery !{{is|is not}} charging",
+          "nl": "Batterij is !{{aan het laden|niet aan het laden}}"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=quatt_home_battery"
+          }
+        ]
+      },
+      {
+        "id": "battery_is_discharging",
+        "title": {
+          "en": "Battery !{{is|is not}} discharging",
+          "nl": "Batterij is !{{aan het ontladen|niet aan het ontladen}}"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=quatt_home_battery"
+          }
+        ]
+      }
+    ]
+  }
+}

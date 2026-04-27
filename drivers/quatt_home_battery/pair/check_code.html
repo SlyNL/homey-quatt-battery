@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: -apple-system, sans-serif; padding: 24px; color: #333; }
+    label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+    input { width: 100%; padding: 10px 12px; font-size: 16px; box-sizing: border-box;
+            border: 1px solid #ddd; border-radius: 8px; outline: none; }
+    input:focus { border-color: #0073e6; }
+    .hint { font-size: 12px; color: #888; margin-top: 6px; }
+    button { margin-top: 20px; width: 100%; padding: 12px; font-size: 16px;
+             background: #0073e6; color: white; border: none; border-radius: 8px;
+             cursor: pointer; font-weight: 600; }
+    button:hover { background: #005bbf; }
+    .error { color: #e00; font-size: 13px; margin-top: 8px; display: none; }
+  </style>
+</head>
+<body>
+  <label for="checkCode">Check code</label>
+  <input type="text" id="checkCode" placeholder="bijv. 9FD821" autocomplete="off" autocapitalize="characters">
+  <p class="hint">Te vinden op het label van de batterij</p>
+  <p class="error" id="err">Vul de check code in</p>
+  <button id="next">Volgende</button>
+
+  <script>
+    document.getElementById('checkCode').focus();
+
+    document.getElementById('next').addEventListener('click', () => {
+      const cc = document.getElementById('checkCode').value.trim();
+      if (!cc) {
+        document.getElementById('err').style.display = 'block';
+        return;
+      }
+      document.getElementById('err').style.display = 'none';
+      Homey.emit('check_code', { checkCode: cc }, (err) => {
+        if (err) return Homey.alert(err.message || String(err));
+        Homey.nextView();
+      });
+    });
+
+    document.getElementById('checkCode').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('next').click();
+    });
+  </script>
+</body>
+</html>

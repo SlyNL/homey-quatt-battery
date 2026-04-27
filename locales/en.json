@@ -1,0 +1,13 @@
+{
+  "errors": {
+    "pairing_failed": "Pairing failed. Check UUID, serial number and check code.",
+    "auth_failed":    "Authentication failed. Please re-pair the device."
+  },
+  "pair": {
+    "check_code": {
+      "label": "Check code",
+      "hint":  "Found on the battery label or in the Quatt mobile app",
+      "next":  "Next"
+    }
+  }
+}
