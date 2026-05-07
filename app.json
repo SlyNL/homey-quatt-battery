@@ -19,9 +19,10 @@
     "small": "/assets/images/small.png",
     "large": "/assets/images/large.png"
   },
+  "brandColor": "#1a2b3c",
   "author": {
-    "name": "Community",
-    "email": "https://github.com/SlyNL/homey-quatt-battery/issues"
+    "name": "SlyNL",
+    "email": "SlyNL@users.noreply.github.com"
   },
   "drivers": [
     {
