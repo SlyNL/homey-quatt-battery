@@ -21,7 +21,7 @@
   },
   "author": {
     "name": "Community",
-    "email": "community@example.com"
+    "email": "https://github.com/SlyNL/homey-quatt-battery/issues"
   },
   "drivers": [
     {

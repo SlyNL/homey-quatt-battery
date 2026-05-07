@@ -15,7 +15,10 @@ class QuattHomeBatteryDevice extends Device {
     let stored = {};
     try {
       stored = (await this.homey.settings.get(STORAGE_KEY)) || {};
-    } catch (_) { /* no stored tokens yet */ }
+    } catch (err) {
+      this.error('Failed to load stored credentials on device init:', err.message);
+      // Continue with empty stored object, re-auth will happen on next poll
+    }
 
     this._auth = new QuattRemoteAuthClient(this.homey);
     this._auth.loadTokens(stored.idToken, stored.refreshToken);
@@ -181,10 +184,14 @@ class QuattHomeBatteryDevice extends Device {
         const trigAbove = this.homey.flow.getDeviceTriggerCard('battery_soc_above');
         try {
           await trigBelow.trigger(this, {}, { threshold: newSoc });
-        } catch (_) { /* card may not be registered yet */ }
+        } catch (err) {
+          this.debug(`battery_soc_below trigger failed: ${err.message}`);
+        }
         try {
           await trigAbove.trigger(this, {}, { threshold: newSoc });
-        } catch (_) { /* card may not be registered yet */ }
+        } catch (err) {
+          this.debug(`battery_soc_above trigger failed: ${err.message}`);
+        }
       }
       this._lastSoc = newSoc;
     }
@@ -214,7 +221,9 @@ class QuattHomeBatteryDevice extends Device {
         const fire = async (cardId) => {
           try {
             await this.homey.flow.getDeviceTriggerCard(cardId).trigger(this, {}, {});
-          } catch (_) { /* ignore if not registered */ }
+          } catch (err) {
+            this.debug(`Flow trigger '${cardId}' not available yet: ${err.message}`);
+          }
         };
 
         if (isCharging)    await fire('battery_charging');
