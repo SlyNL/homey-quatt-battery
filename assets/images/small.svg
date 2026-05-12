@@ -1,36 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 175" width="250" height="175">
   <defs>
     <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#f0ece6"/>
       <stop offset="100%" stop-color="#e4ddd5"/>
     </linearGradient>
-    <linearGradient id="tower" x1="0" y1="0" x2="0.2" y2="1">
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ddd7ce"/>
+      <stop offset="100%" stop-color="#d0c9bf"/>
+    </linearGradient>
+    <linearGradient id="tower" x1="0" y1="0" x2="0.12" y2="1">
       <stop offset="0%" stop-color="#b4c8bc"/>
       <stop offset="100%" stop-color="#9eb4a8"/>
     </linearGradient>
   </defs>
 
-  <rect width="64" height="64" rx="12" fill="url(#wall)"/>
+  <!-- Wall -->
+  <rect width="250" height="175" fill="url(#wall)"/>
 
   <!-- Floor -->
-  <rect x="0" y="52" width="64" height="12" rx="0" fill="#ddd7ce"/>
-  <line x1="0" y1="52" x2="64" y2="52" stroke="#cac4ba" stroke-width="1"/>
+  <rect x="0" y="146" width="250" height="29" fill="url(#floor)"/>
+  <line x1="0" y1="146" x2="250" y2="146" stroke="#c8c2b8" stroke-width="1"/>
+  <rect x="0" y="141" width="250" height="6" fill="#dedad2"/>
+
+  <!-- Plant -->
+  <ellipse cx="42" cy="143" rx="14" ry="4" fill="#c0b8ac" opacity="0.5"/>
+  <rect x="34" y="134" width="16" height="11" rx="3" fill="#c4b090"/>
+  <path d="M42 134 Q38 122 30 114" stroke="#5a8f62" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M42 132 Q46 118 56 112" stroke="#5a8f62" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <ellipse cx="29" cy="112" rx="13" ry="6" fill="#4e8058" transform="rotate(-28 29 112)"/>
+  <ellipse cx="57" cy="109" rx="15" ry="6" fill="#5a8f62" transform="rotate(22 57 109)"/>
 
   <!-- Tower shadow -->
-  <ellipse cx="32" cy="54" rx="14" ry="3" fill="#00000015"/>
+  <ellipse cx="125" cy="157" rx="32" ry="5" fill="#00000015"/>
 
-  <!-- Module 3 bottom -->
-  <rect x="20" y="38" width="24" height="15" rx="3" fill="url(#tower)" stroke="#90a89e" stroke-width="0.8"/>
-  <!-- Module 2 middle -->
-  <rect x="20" y="22" width="24" height="14" rx="3" fill="url(#tower)" stroke="#90a89e" stroke-width="0.8"/>
+  <!-- Side depth -->
+  <path d="M148 10 L156 17 L156 148 L148 141 Z" fill="#86a098" opacity="0.5"/>
+
   <!-- Module 1 top -->
-  <rect x="20" y="7" width="24" height="13" rx="3" fill="url(#tower)" stroke="#90a89e" stroke-width="0.8"/>
+  <rect x="97" y="7"   width="51" height="44" rx="6" fill="url(#tower)" stroke="#90a89e" stroke-width="1"/>
+  <!-- Module 2 middle -->
+  <rect x="97" y="56"  width="51" height="43" rx="6" fill="url(#tower)" stroke="#90a89e" stroke-width="1"/>
+  <!-- Module 3 bottom -->
+  <rect x="97" y="104" width="51" height="41" rx="6" fill="url(#tower)" stroke="#90a89e" stroke-width="1"/>
 
   <!-- Seam gaps -->
-  <rect x="21" y="20" width="22" height="3" rx="1" fill="#ede7de" opacity="0.8"/>
-  <rect x="21" y="36" width="22" height="3" rx="1" fill="#ede7de" opacity="0.8"/>
+  <rect x="99" y="50"  width="47" height="7" rx="2" fill="#ede7de" opacity="0.7"/>
+  <rect x="99" y="98"  width="47" height="7" rx="2" fill="#ede7de" opacity="0.7"/>
 
-  <!-- Control panel top -->
-  <rect x="23" y="10" width="18" height="8" rx="2" fill="#1c2820" opacity="0.85"/>
-  <circle cx="36" cy="16" r="1.5" fill="#3DBA89"/>
+  <!-- Control panel -->
+  <rect x="103" y="13" width="38" height="22" rx="3" fill="#1c2820" opacity="0.88"/>
+  <rect x="107" y="17" width="24" height="5"  rx="2" fill="#3DBA89"/>
+  <circle cx="136" cy="29" r="3"   fill="#3DBA89"/>
+
+  <!-- Base feet -->
+  <rect x="101" y="145" width="13" height="4" rx="2" fill="#8ca89c"/>
+  <rect x="134" y="145" width="13" height="4" rx="2" fill="#8ca89c"/>
 </svg>
