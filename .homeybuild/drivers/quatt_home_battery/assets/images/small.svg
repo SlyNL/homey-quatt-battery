@@ -1,7 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="14" fill="#1a2b3c"/>
-  <rect x="20" y="14" width="24" height="34" rx="4" fill="none" stroke="#00d4aa" stroke-width="2.5"/>
-  <rect x="26" y="11" width="12" height="5" rx="2" fill="#00d4aa"/>
-  <rect x="22" y="16" width="20" height="20" rx="2" fill="#00d4aa" opacity="0.85"/>
-  <path d="M35 22l-5 8h4l-2 8 6-10h-4z" fill="#1a2b3c"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 75" width="75" height="75">
+  <defs>
+    <linearGradient id="tower" x1="0" y1="0" x2="0.15" y2="1">
+      <stop offset="0%" stop-color="#b8ccc0"/>
+      <stop offset="100%" stop-color="#9cb0a6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- White background -->
+  <rect width="75" height="75" fill="#ffffff"/>
+
+  <!-- Floor shadow -->
+  <ellipse cx="37" cy="69" rx="20" ry="3.5" fill="#00000010"/>
+
+  <!-- Side depth -->
+  <path d="M52 9 L59 15 L59 63 L52 57 Z" fill="#86a098" opacity="0.5"/>
+
+  <!-- Module 3 bottom -->
+  <rect x="21" y="44" width="31" height="19" rx="5" fill="url(#tower)" stroke="#94aca2" stroke-width="1"/>
+  <!-- Module 2 middle -->
+  <rect x="21" y="24" width="31" height="18" rx="5" fill="url(#tower)" stroke="#94aca2" stroke-width="1"/>
+  <!-- Module 1 top -->
+  <rect x="21" y="5"  width="31" height="17" rx="5" fill="url(#tower)" stroke="#94aca2" stroke-width="1"/>
+
+  <!-- Seam gaps -->
+  <rect x="22" y="22" width="29" height="3" rx="1" fill="#ffffff" opacity="0.6"/>
+  <rect x="22" y="42" width="29" height="3" rx="1" fill="#ffffff" opacity="0.6"/>
+
+  <!-- Control panel -->
+  <rect x="25" y="8"  width="24" height="10" rx="2.5" fill="#18221e" opacity="0.9"/>
+  <rect x="27" y="10" width="14" height="4"  rx="2"   fill="#3DBA89" opacity="0.9"/>
+  <circle cx="44" cy="15" r="2" fill="#3DBA89"/>
+
+  <!-- Base feet -->
+  <rect x="23" y="63" width="8"  height="4" rx="2" fill="#8aa29a"/>
+  <rect x="38" y="63" width="8"  height="4" rx="2" fill="#8aa29a"/>
 </svg>
