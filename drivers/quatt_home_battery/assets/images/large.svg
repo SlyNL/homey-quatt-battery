@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 350" width="500" height="350">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
   <defs>
     <linearGradient id="tower" x1="0" y1="0" x2="0.12" y2="1">
       <stop offset="0%" stop-color="#b8ccc0"/>
@@ -9,62 +9,64 @@
       <stop offset="100%" stop-color="#9cb0a6"/>
     </linearGradient>
     <filter id="shadow">
-      <feDropShadow dx="6" dy="6" stdDeviation="14" flood-color="#00000016"/>
+      <feDropShadow dx="6" dy="6" stdDeviation="16" flood-color="#00000016"/>
     </filter>
   </defs>
 
   <!-- White background -->
-  <rect width="500" height="350" fill="#ffffff"/>
+  <rect width="500" height="500" fill="#ffffff"/>
 
   <!-- Floor shadow -->
-  <ellipse cx="250" cy="330" rx="88" ry="8" fill="#00000010"/>
+  <ellipse cx="250" cy="462" rx="90" ry="10" fill="#00000010"/>
 
   <!-- Side depth -->
-  <path d="M306 18 L326 32 L326 316 L306 302 Z" fill="url(#side)" opacity="0.55"/>
+  <path d="M308 52 L328 68 L328 450 L308 434 Z" fill="url(#side)" opacity="0.55"/>
 
   <!-- Device shadow -->
-  <rect x="194" y="14" width="116" height="292" rx="12" fill="#00000012" filter="url(#shadow)"/>
+  <rect x="194" y="48" width="118" height="390" rx="12" fill="#00000012" filter="url(#shadow)"/>
 
   <!-- Module 1 – top -->
-  <rect x="188" y="10"  width="118" height="96"  rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
+  <rect x="188" y="42"  width="120" height="126" rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
   <!-- Module 2 – middle -->
-  <rect x="188" y="116" width="118" height="92"  rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
+  <rect x="188" y="180" width="120" height="122" rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
   <!-- Module 3 – bottom -->
-  <rect x="188" y="218" width="118" height="90"  rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
+  <rect x="188" y="314" width="120" height="120" rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
 
   <!-- Seam gaps -->
-  <rect x="194" y="105" width="106" height="12" rx="3" fill="#ffffff" opacity="0.55"/>
-  <rect x="194" y="208" width="106" height="12" rx="3" fill="#ffffff" opacity="0.55"/>
+  <rect x="194" y="167" width="108" height="14" rx="3" fill="#ffffff" opacity="0.55"/>
+  <rect x="194" y="302" width="108" height="14" rx="3" fill="#ffffff" opacity="0.55"/>
 
   <!-- Control panel – top module -->
-  <rect x="204" y="24"  width="88"  height="54" rx="6" fill="#18221e" opacity="0.9"/>
-  <rect x="208" y="28"  width="80"  height="30" rx="4" fill="#223028"/>
-  <rect x="212" y="34"  width="56"  height="7"  rx="3.5" fill="#2e2e2e"/>
-  <rect x="212" y="34"  width="44"  height="7"  rx="3.5" fill="#3DBA89"/>
-  <rect x="212" y="45"  width="32"  height="5"  rx="2.5" fill="#3DBA89" opacity="0.5"/>
-  <circle cx="278" cy="64" r="5"   fill="#3DBA89"/>
-  <circle cx="278" cy="64" r="8"   fill="#3DBA89" opacity="0.2"/>
+  <rect x="204" y="58"  width="90" height="62" rx="6" fill="#18221e" opacity="0.9"/>
+  <rect x="208" y="62"  width="82" height="36" rx="4" fill="#223028"/>
+  <rect x="212" y="68"  width="58" height="8"  rx="4" fill="#2e2e2e"/>
+  <rect x="212" y="68"  width="46" height="8"  rx="4" fill="#3DBA89"/>
+  <rect x="212" y="80"  width="32" height="6"  rx="3" fill="#3DBA89" opacity="0.5"/>
+  <circle cx="282" cy="108" r="6"   fill="#3DBA89"/>
+  <circle cx="282" cy="108" r="9"   fill="#3DBA89" opacity="0.2"/>
 
   <!-- QUATT wordmark -->
-  <text x="247" y="94" font-family="'Arial Black', Arial, sans-serif" font-size="12" font-weight="900" fill="#3a5048" text-anchor="middle" letter-spacing="4" opacity="0.65">QUATT</text>
+  <text x="248" y="150" font-family="'Arial Black', Arial, sans-serif" font-size="13" font-weight="900" fill="#3a5048" text-anchor="middle" letter-spacing="4" opacity="0.65">QUATT</text>
 
   <!-- Vent lines module 2 -->
   <g stroke="#8aa29a" stroke-width="1.2" opacity="0.5">
-    <line x1="200" y1="148" x2="294" y2="148"/>
-    <line x1="200" y1="162" x2="294" y2="162"/>
-    <line x1="200" y1="176" x2="294" y2="176"/>
-    <line x1="200" y1="190" x2="294" y2="190"/>
+    <line x1="200" y1="216" x2="296" y2="216"/>
+    <line x1="200" y1="232" x2="296" y2="232"/>
+    <line x1="200" y1="248" x2="296" y2="248"/>
+    <line x1="200" y1="264" x2="296" y2="264"/>
+    <line x1="200" y1="280" x2="296" y2="280"/>
   </g>
 
   <!-- Vent lines module 3 -->
   <g stroke="#8aa29a" stroke-width="1.2" opacity="0.5">
-    <line x1="200" y1="248" x2="294" y2="248"/>
-    <line x1="200" y1="262" x2="294" y2="262"/>
-    <line x1="200" y1="276" x2="294" y2="276"/>
-    <line x1="200" y1="290" x2="294" y2="290"/>
+    <line x1="200" y1="350" x2="296" y2="350"/>
+    <line x1="200" y1="366" x2="296" y2="366"/>
+    <line x1="200" y1="382" x2="296" y2="382"/>
+    <line x1="200" y1="398" x2="296" y2="398"/>
+    <line x1="200" y1="414" x2="296" y2="414"/>
   </g>
 
   <!-- Base feet -->
-  <rect x="200" y="308" width="30" height="10" rx="5" fill="#8aa29a"/>
-  <rect x="276" y="308" width="30" height="10" rx="5" fill="#8aa29a"/>
+  <rect x="200" y="434" width="32" height="12" rx="6" fill="#8aa29a"/>
+  <rect x="276" y="434" width="32" height="12" rx="6" fill="#8aa29a"/>
 </svg>
