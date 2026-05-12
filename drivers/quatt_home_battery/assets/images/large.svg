@@ -1,23 +1,76 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0f1f2e"/>
-      <stop offset="100%" stop-color="#1a3a4a"/>
+    <linearGradient id="tower" x1="0" y1="0" x2="0.12" y2="1">
+      <stop offset="0%" stop-color="#b8ccc0"/>
+      <stop offset="100%" stop-color="#9cb0a6"/>
     </linearGradient>
-    <linearGradient id="charge" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#00b894"/>
-      <stop offset="100%" stop-color="#00d4aa"/>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#86a098"/>
+      <stop offset="100%" stop-color="#9cb0a6"/>
     </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="6" dy="6" stdDeviation="16" flood-color="#00000016"/>
+    </filter>
   </defs>
-  <rect width="500" height="500" rx="80" fill="url(#bg)"/>
-  <!-- Battery body -->
-  <rect x="140" y="110" width="220" height="300" rx="24" fill="none" stroke="#00d4aa" stroke-width="12"/>
-  <!-- Battery terminal -->
-  <rect x="200" y="86" width="100" height="34" rx="12" fill="#00d4aa"/>
-  <!-- Charge fill -->
-  <rect x="152" y="230" width="196" height="168" rx="14" fill="url(#charge)" opacity="0.9"/>
-  <!-- Lightning bolt -->
-  <path d="M275 175l-50 90h42l-22 80 70-110h-46z" fill="#ffffff" opacity="0.95"/>
-  <!-- Brand text -->
-  <text x="250" y="446" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#00d4aa" text-anchor="middle" letter-spacing="6">QUATT</text>
+
+  <!-- White background -->
+  <rect width="500" height="500" fill="#ffffff"/>
+
+  <!-- Subtle floor shadow line -->
+  <ellipse cx="250" cy="456" rx="90" ry="10" fill="#00000010"/>
+
+  <!-- Right side depth -->
+  <path d="M308 60 L328 76 L328 448 L308 432 Z" fill="url(#side)" opacity="0.6"/>
+
+  <!-- Shadow -->
+  <rect x="194" y="56" width="114" height="380" rx="12" fill="#00000014" filter="url(#shadow)"/>
+
+  <!-- Module 1 — top -->
+  <rect x="188" y="48" width="120" height="124" rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
+
+  <!-- Module 2 — middle -->
+  <rect x="188" y="182" width="120" height="120" rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
+
+  <!-- Module 3 — bottom -->
+  <rect x="188" y="312" width="120" height="120" rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
+
+  <!-- Seam gaps between modules -->
+  <rect x="194" y="170" width="108" height="14" rx="3" fill="#ffffff" opacity="0.55"/>
+  <rect x="194" y="300" width="108" height="14" rx="3" fill="#ffffff" opacity="0.55"/>
+
+  <!-- Control panel — top module -->
+  <rect x="206" y="66" width="88" height="58" rx="6" fill="#18221e" opacity="0.9"/>
+  <!-- Display screen -->
+  <rect x="210" y="70" width="80" height="32" rx="4" fill="#223028"/>
+  <!-- Charge level bar -->
+  <rect x="214" y="76" width="60" height="7" rx="3.5" fill="#2e2e2e"/>
+  <rect x="214" y="76" width="46" height="7" rx="3.5" fill="#3DBA89"/>
+  <!-- kWh readout dots -->
+  <rect x="214" y="88" width="30" height="5" rx="2.5" fill="#3DBA89" opacity="0.55"/>
+  <!-- Status LED -->
+  <circle cx="278" cy="110" r="5" fill="#3DBA89"/>
+  <circle cx="278" cy="110" r="8" fill="#3DBA89" opacity="0.2"/>
+
+  <!-- Ventilation slots — module 2 -->
+  <g stroke="#8aa29a" stroke-width="1.2" opacity="0.55">
+    <line x1="200" y1="218" x2="296" y2="218"/>
+    <line x1="200" y1="232" x2="296" y2="232"/>
+    <line x1="200" y1="246" x2="296" y2="246"/>
+    <line x1="200" y1="260" x2="296" y2="260"/>
+  </g>
+
+  <!-- Ventilation slots — module 3 -->
+  <g stroke="#8aa29a" stroke-width="1.2" opacity="0.55">
+    <line x1="200" y1="348" x2="296" y2="348"/>
+    <line x1="200" y1="362" x2="296" y2="362"/>
+    <line x1="200" y1="376" x2="296" y2="376"/>
+    <line x1="200" y1="390" x2="296" y2="390"/>
+  </g>
+
+  <!-- Quatt wordmark below control panel -->
+  <text x="248" y="152" font-family="'Arial Black', Arial, sans-serif" font-size="12" font-weight="900" fill="#3a5048" text-anchor="middle" letter-spacing="4" opacity="0.7">QUATT</text>
+
+  <!-- Base feet -->
+  <rect x="200" y="432" width="32" height="12" rx="6" fill="#8aa29a"/>
+  <rect x="264" y="432" width="32" height="12" rx="6" fill="#8aa29a"/>
 </svg>

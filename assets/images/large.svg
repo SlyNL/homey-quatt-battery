@@ -1,23 +1,102 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0f1f2e"/>
-      <stop offset="100%" stop-color="#1a3a4a"/>
+    <linearGradient id="wall" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#f0ece6"/>
+      <stop offset="100%" stop-color="#e6e0d8"/>
     </linearGradient>
-    <linearGradient id="charge" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#00b894"/>
-      <stop offset="100%" stop-color="#00d4aa"/>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dfd9d0"/>
+      <stop offset="100%" stop-color="#d4cec4"/>
     </linearGradient>
+    <linearGradient id="tower" x1="0" y1="0" x2="0.15" y2="1">
+      <stop offset="0%" stop-color="#b4c8bc"/>
+      <stop offset="100%" stop-color="#9eb4a8"/>
+    </linearGradient>
+    <linearGradient id="towerside" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8ca89c"/>
+      <stop offset="100%" stop-color="#9eb4a8"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="8" dy="4" stdDeviation="12" flood-color="#00000022"/>
+    </filter>
+    <clipPath id="towerclip">
+      <rect x="188" y="62" width="108" height="368" rx="10"/>
+    </clipPath>
   </defs>
-  <rect width="500" height="500" rx="80" fill="url(#bg)"/>
-  <!-- Battery body -->
-  <rect x="140" y="110" width="220" height="300" rx="24" fill="none" stroke="#00d4aa" stroke-width="12"/>
-  <!-- Battery terminal -->
-  <rect x="200" y="86" width="100" height="34" rx="12" fill="#00d4aa"/>
-  <!-- Charge fill -->
-  <rect x="152" y="230" width="196" height="168" rx="14" fill="url(#charge)" opacity="0.9"/>
-  <!-- Lightning bolt -->
-  <path d="M275 175l-50 90h42l-22 80 70-110h-46z" fill="#ffffff" opacity="0.95"/>
-  <!-- Brand text -->
-  <text x="250" y="446" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#00d4aa" text-anchor="middle" letter-spacing="6">QUATT</text>
+
+  <!-- Wall background -->
+  <rect width="500" height="500" fill="url(#wall)"/>
+
+  <!-- Warm light patch (sunlight from right) -->
+  <ellipse cx="420" cy="260" rx="180" ry="220" fill="#fff8ef" opacity="0.35"/>
+
+  <!-- Floor -->
+  <rect x="0" y="400" width="500" height="100" fill="url(#floor)"/>
+  <!-- Floor/wall join -->
+  <line x1="0" y1="400" x2="500" y2="400" stroke="#cac4ba" stroke-width="1.5"/>
+
+  <!-- Baseboard -->
+  <rect x="0" y="392" width="500" height="10" fill="#e0dbd2"/>
+
+  <!-- Plant (left side, decorative) -->
+  <ellipse cx="96" cy="378" rx="28" ry="8" fill="#c8c0b4" opacity="0.5"/>
+  <!-- Pot -->
+  <rect x="80" y="362" width="32" height="20" rx="4" fill="#c8b89a"/>
+  <!-- Stems -->
+  <path d="M96 362 Q88 330 74 310" stroke="#6a9a72" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M96 358 Q100 320 118 298" stroke="#6a9a72" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M96 355 Q94 335 84 318" stroke="#6a9a72" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <!-- Leaves -->
+  <ellipse cx="72" cy="304" rx="22" ry="10" fill="#5a8f62" transform="rotate(-30 72 304)"/>
+  <ellipse cx="120" cy="294" rx="26" ry="11" fill="#4e8058" transform="rotate(25 120 294)"/>
+  <ellipse cx="83" cy="316" rx="18" ry="9" fill="#6aaa70" transform="rotate(-15 83 316)"/>
+
+  <!-- ── Quatt Home Battery Tower ── -->
+
+  <!-- Shadow under unit -->
+  <ellipse cx="242" cy="432" rx="60" ry="10" fill="#00000018"/>
+
+  <!-- Right side face (3D depth) -->
+  <rect x="296" y="70" width="16" height="352" rx="0" fill="url(#towerside)" opacity="0.7"/>
+  <path d="M296 70 L312 78 L312 430 L296 422 Z" fill="#8ca89c" opacity="0.5"/>
+
+  <!-- Tower body shadow -->
+  <rect x="192" y="66" width="108" height="364" rx="10" fill="#00000018" filter="url(#shadow)"/>
+
+  <!-- Tower body — 3 stacked modules -->
+  <!-- Module 3 (bottom) -->
+  <rect x="188" y="302" width="108" height="124" rx="10" fill="url(#tower)" stroke="#90a89e" stroke-width="1"/>
+  <!-- Module 2 (middle) -->
+  <rect x="188" y="182" width="108" height="116" rx="10" fill="url(#tower)" stroke="#90a89e" stroke-width="1"/>
+  <!-- Module 1 (top) -->
+  <rect x="188" y="62" width="108" height="116" rx="10" fill="url(#tower)" stroke="#90a89e" stroke-width="1"/>
+
+  <!-- Module seam gaps -->
+  <rect x="192" y="176" width="100" height="8" rx="2" fill="#e6e0d8" opacity="0.7"/>
+  <rect x="192" y="296" width="100" height="8" rx="2" fill="#e6e0d8" opacity="0.7"/>
+
+  <!-- Control panel on top module -->
+  <rect x="202" y="78" width="80" height="50" rx="5" fill="#1c2820" opacity="0.85"/>
+  <!-- Display glow -->
+  <rect x="206" y="82" width="72" height="28" rx="3" fill="#2a4236" opacity="0.8"/>
+  <!-- Display content (charge bar) -->
+  <rect x="210" y="88" width="50" height="6" rx="3" fill="#3DBA89" opacity="0.9"/>
+  <rect x="210" y="97" width="30" height="4" rx="2" fill="#3DBA89" opacity="0.5"/>
+  <!-- LED indicator -->
+  <circle cx="258" cy="116" r="4" fill="#3DBA89"/>
+  <circle cx="258" cy="116" r="6" fill="#3DBA89" opacity="0.25"/>
+
+  <!-- Module 2 ventilation lines -->
+  <line x1="200" y1="220" x2="284" y2="220" stroke="#90a89e" stroke-width="1" opacity="0.5"/>
+  <line x1="200" y1="232" x2="284" y2="232" stroke="#90a89e" stroke-width="1" opacity="0.5"/>
+  <line x1="200" y1="244" x2="284" y2="244" stroke="#90a89e" stroke-width="1" opacity="0.5"/>
+
+  <!-- Module 3 ventilation lines -->
+  <line x1="200" y1="340" x2="284" y2="340" stroke="#90a89e" stroke-width="1" opacity="0.5"/>
+  <line x1="200" y1="352" x2="284" y2="352" stroke="#90a89e" stroke-width="1" opacity="0.5"/>
+  <line x1="200" y1="364" x2="284" y2="364" stroke="#90a89e" stroke-width="1" opacity="0.5"/>
+
+  <!-- Base / feet -->
+  <rect x="198" y="422" width="28" height="10" rx="4" fill="#8ca89c"/>
+  <rect x="258" y="422" width="28" height="10" rx="4" fill="#8ca89c"/>
 </svg>

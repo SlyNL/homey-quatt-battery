@@ -8,8 +8,8 @@
     "nl": "Quatt Thuisbatterij"
   },
   "description": {
-    "en": "Integrate your Quatt Home Battery with Homey",
-    "nl": "Verbind je Quatt Thuisbatterij met Homey"
+    "en": "Track, automate and maximise savings from your Quatt Home Battery.",
+    "nl": "Houd je Quatt Thuisbatterij bij, automatiseer en maximaliseer je besparing."
   },
   "category": [
     "energy"
