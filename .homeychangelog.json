@@ -25,5 +25,9 @@
   },
   "1.0.9": {
     "en": "Bug Fix"
+  },
+  "1.0.11": {
+    "en": "Check code now supports letters, digits and punctuation",
+    "nl": "Controlecode ondersteunt nu letters, cijfers en leestekens"
   }
 }
