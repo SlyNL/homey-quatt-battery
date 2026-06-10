@@ -19,5 +19,11 @@
   },
   "1.0.7": {
     "en": "update image"
+  },
+  "1.0.8": {
+    "en": "status indicator aangepast / changed status indicator"
+  },
+  "1.0.9": {
+    "en": "Bug Fix"
   }
 }

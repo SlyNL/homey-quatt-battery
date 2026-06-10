@@ -1,23 +1,72 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0f1f2e"/>
-      <stop offset="100%" stop-color="#1a3a4a"/>
+    <linearGradient id="tower" x1="0" y1="0" x2="0.12" y2="1">
+      <stop offset="0%" stop-color="#b8ccc0"/>
+      <stop offset="100%" stop-color="#9cb0a6"/>
     </linearGradient>
-    <linearGradient id="charge" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#00b894"/>
-      <stop offset="100%" stop-color="#00d4aa"/>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#86a098"/>
+      <stop offset="100%" stop-color="#9cb0a6"/>
     </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="6" dy="6" stdDeviation="16" flood-color="#00000016"/>
+    </filter>
   </defs>
-  <rect width="500" height="500" rx="80" fill="url(#bg)"/>
-  <!-- Battery body -->
-  <rect x="140" y="110" width="220" height="300" rx="24" fill="none" stroke="#00d4aa" stroke-width="12"/>
-  <!-- Battery terminal -->
-  <rect x="200" y="86" width="100" height="34" rx="12" fill="#00d4aa"/>
-  <!-- Charge fill -->
-  <rect x="152" y="230" width="196" height="168" rx="14" fill="url(#charge)" opacity="0.9"/>
-  <!-- Lightning bolt -->
-  <path d="M275 175l-50 90h42l-22 80 70-110h-46z" fill="#ffffff" opacity="0.95"/>
-  <!-- Brand text -->
-  <text x="250" y="446" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#00d4aa" text-anchor="middle" letter-spacing="6">QUATT</text>
+
+  <!-- White background -->
+  <rect width="500" height="500" fill="#ffffff"/>
+
+  <!-- Floor shadow -->
+  <ellipse cx="250" cy="462" rx="90" ry="10" fill="#00000010"/>
+
+  <!-- Side depth -->
+  <path d="M308 52 L328 68 L328 450 L308 434 Z" fill="url(#side)" opacity="0.55"/>
+
+  <!-- Device shadow -->
+  <rect x="194" y="48" width="118" height="390" rx="12" fill="#00000012" filter="url(#shadow)"/>
+
+  <!-- Module 1 – top -->
+  <rect x="188" y="42"  width="120" height="126" rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
+  <!-- Module 2 – middle -->
+  <rect x="188" y="180" width="120" height="122" rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
+  <!-- Module 3 – bottom -->
+  <rect x="188" y="314" width="120" height="120" rx="12" fill="url(#tower)" stroke="#94aca2" stroke-width="1.2"/>
+
+  <!-- Seam gaps -->
+  <rect x="194" y="167" width="108" height="14" rx="3" fill="#ffffff" opacity="0.55"/>
+  <rect x="194" y="302" width="108" height="14" rx="3" fill="#ffffff" opacity="0.55"/>
+
+  <!-- Control panel – top module -->
+  <rect x="204" y="58"  width="90" height="62" rx="6" fill="#18221e" opacity="0.9"/>
+  <rect x="208" y="62"  width="82" height="36" rx="4" fill="#223028"/>
+  <rect x="212" y="68"  width="58" height="8"  rx="4" fill="#2e2e2e"/>
+  <rect x="212" y="68"  width="46" height="8"  rx="4" fill="#3DBA89"/>
+  <rect x="212" y="80"  width="32" height="6"  rx="3" fill="#3DBA89" opacity="0.5"/>
+  <circle cx="282" cy="108" r="6"   fill="#3DBA89"/>
+  <circle cx="282" cy="108" r="9"   fill="#3DBA89" opacity="0.2"/>
+
+  <!-- QUATT wordmark -->
+  <text x="248" y="150" font-family="'Arial Black', Arial, sans-serif" font-size="13" font-weight="900" fill="#3a5048" text-anchor="middle" letter-spacing="4" opacity="0.65">QUATT</text>
+
+  <!-- Vent lines module 2 -->
+  <g stroke="#8aa29a" stroke-width="1.2" opacity="0.5">
+    <line x1="200" y1="216" x2="296" y2="216"/>
+    <line x1="200" y1="232" x2="296" y2="232"/>
+    <line x1="200" y1="248" x2="296" y2="248"/>
+    <line x1="200" y1="264" x2="296" y2="264"/>
+    <line x1="200" y1="280" x2="296" y2="280"/>
+  </g>
+
+  <!-- Vent lines module 3 -->
+  <g stroke="#8aa29a" stroke-width="1.2" opacity="0.5">
+    <line x1="200" y1="350" x2="296" y2="350"/>
+    <line x1="200" y1="366" x2="296" y2="366"/>
+    <line x1="200" y1="382" x2="296" y2="382"/>
+    <line x1="200" y1="398" x2="296" y2="398"/>
+    <line x1="200" y1="414" x2="296" y2="414"/>
+  </g>
+
+  <!-- Base feet -->
+  <rect x="200" y="434" width="32" height="12" rx="6" fill="#8aa29a"/>
+  <rect x="276" y="434" width="32" height="12" rx="6" fill="#8aa29a"/>
 </svg>

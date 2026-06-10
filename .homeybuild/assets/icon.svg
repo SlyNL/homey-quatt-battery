@@ -1,6 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect x="25" y="15" width="50" height="68" rx="6" fill="none" stroke="#000" stroke-width="5"/>
-  <rect x="38" y="8" width="24" height="10" rx="4" fill="#000"/>
-  <rect x="28" y="18" width="44" height="38" rx="3" fill="#000" opacity="0.15"/>
-  <path d="M58 28l-14 24h12l-6 22 20-30h-14z" fill="#000"/>
+  <!-- Battery body — solid fill so it reads on any background -->
+  <rect x="24" y="22" width="52" height="66" rx="8" fill="#000"/>
+
+  <!-- Terminal nub on top -->
+  <rect x="38" y="13" width="24" height="14" rx="5" fill="#000"/>
+
+  <!-- Cutout inside battery (creates the outline effect via negative space) -->
+  <rect x="30" y="28" width="40" height="54" rx="5" fill="#fff"/>
+
+  <!-- Lightning bolt — solid black, sits over the white cutout -->
+  <path d="M57 34 L40 56 h13 L47 72 L66 47 H53 Z" fill="#000"/>
 </svg>

@@ -1,5 +1,3 @@
-# Quatt Home Battery – Homey App
-
 Unofficial Homey integration for the **Quatt Home Battery**, based on the reverse-engineered Quatt mobile API.
 
 > ⚠️ **Beta status** – the Quatt mobile API is reverse-engineered and may change without notice.

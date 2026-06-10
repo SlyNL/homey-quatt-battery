@@ -1,6 +1,6 @@
 {
   "id": "io.quatt.battery",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "compatibility": ">=12.0.0",
   "sdk": 3,
   "name": {
@@ -39,10 +39,9 @@
         "meter_power.discharged",
         "quatt_power_flow_direction",
         "quatt_control_action",
-        "quatt_control_mode",
+        "quatt_savings_yesterday",
         "quatt_capacity_kwh",
-        "quatt_savings_total",
-        "quatt_savings_yesterday"
+        "quatt_savings_total"
       ],
       "capabilitiesOptions": {
         "measure_battery": {
@@ -79,12 +78,6 @@
           "title": {
             "en": "Control action",
             "nl": "Besturingsactie"
-          }
-        },
-        "quatt_control_mode": {
-          "title": {
-            "en": "Control mode",
-            "nl": "Besturingsmodus"
           }
         },
         "quatt_capacity_kwh": {
@@ -210,17 +203,6 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/capabilities/quatt_control_action.svg"
-    },
-    "quatt_control_mode": {
-      "type": "string",
-      "title": {
-        "en": "Control mode",
-        "nl": "Besturingsmodus"
-      },
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_control_mode.svg"
     },
     "quatt_capacity_kwh": {
       "type": "number",

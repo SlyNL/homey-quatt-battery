@@ -6,6 +6,30 @@ const QuattHomeBatteryApiClient = require('../../lib/QuattHomeBatteryApiClient')
 
 const STORAGE_KEY = 'quatt_auth';
 
+/**
+ * Validate UUID format (BAT-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
+ */
+function validateUuid(uuid) {
+  const uuidPattern = /^BAT-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  return uuidPattern.test(uuid);
+}
+
+/**
+ * Validate serial number format (QOD + 12 digits)
+ */
+function validateSerialNumber(serial) {
+  const serialPattern = /^QOD\d{12}$/;
+  return serialPattern.test(serial);
+}
+
+/**
+ * Validate check code (4 digits)
+ */
+function validateCheckCode(code) {
+  const codePattern = /^\d{4}$/;
+  return codePattern.test(code);
+}
+
 class QuattHomeBatteryDriver extends Driver {
 
   async onInit() {
@@ -33,7 +57,19 @@ class QuattHomeBatteryDriver extends Driver {
       accessKeyUuid = (data.username || '').trim();
       serialNumber  = (data.password || '').trim();
       this.log('Pair step 1 — UUID:', accessKeyUuid, 'SN:', serialNumber);
-      if (!accessKeyUuid || !serialNumber) throw new Error('Vul UUID en serienummer in');
+      
+      if (!accessKeyUuid || !serialNumber) {
+        throw new Error('Vul UUID en serienummer in');
+      }
+      
+      if (!validateUuid(accessKeyUuid)) {
+        throw new Error('UUID ongeldig. Verwacht formaat: BAT-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+      }
+      
+      if (!validateSerialNumber(serialNumber)) {
+        throw new Error('Serienummer ongeldig. Verwacht formaat: QODxxxxxxxxxx (12 cijfers na QOD)');
+      }
+      
       return true;
     });
 
@@ -41,7 +77,15 @@ class QuattHomeBatteryDriver extends Driver {
     session.setHandler('check_code', async ({ checkCode: cc }) => {
       checkCode = (cc || '').trim();
       this.log('Pair step 2 — check code:', checkCode);
-      if (!checkCode) throw new Error('Vul de check code in');
+      
+      if (!checkCode) {
+        throw new Error('Vul de check code in');
+      }
+      
+      if (!validateCheckCode(checkCode)) {
+        throw new Error('Check code ongeldig. Verwacht: 4 cijfers (bijv. 1234)');
+      }
+      
       return true;
     });
 
@@ -50,7 +94,12 @@ class QuattHomeBatteryDriver extends Driver {
       this.log('Pairing — UUID:', accessKeyUuid, 'SN:', serialNumber, 'CC:', checkCode);
 
       let stored = {};
-      try { stored = (await this.homey.settings.get(STORAGE_KEY)) || {}; } catch (_) {}
+      try {
+        stored = (await this.homey.settings.get(STORAGE_KEY)) || {};
+      } catch (err) {
+        this.error('Failed to load stored credentials:', err.message);
+        // Continue with empty stored object, new auth will be created
+      }
 
       const auth = new QuattRemoteAuthClient(this.homey);
       auth.loadTokens(stored.idToken, stored.refreshToken);

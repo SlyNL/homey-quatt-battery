@@ -31,6 +31,12 @@ class QuattHomeBatteryDevice extends Device {
     this._lastSoc           = null;
     this._lastFlowDirection = null;
 
+    // Ensure measure_battery has a numeric value before any poll completes,
+    // so DeviceBatteryIndicator never receives null on first render.
+    if (this.getCapabilityValue('measure_battery') === null) {
+      await this.setCapabilityValue('measure_battery', 0).catch(() => {});
+    }
+
     // Register flow card handlers
     this._registerFlowCards();
 
@@ -235,10 +241,6 @@ class QuattHomeBatteryDevice extends Device {
 
     if (allData.controlAction !== undefined) {
       await this._setCapSafe('quatt_control_action', String(allData.controlAction));
-    }
-
-    if (allData.controlMode !== undefined) {
-      await this._setCapSafe('quatt_control_mode', String(allData.controlMode));
     }
 
     if (allData.capacityKWh !== undefined) {
