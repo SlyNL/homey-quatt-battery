@@ -23,10 +23,10 @@ function validateSerialNumber(serial) {
 }
 
 /**
- * Validate check code (4 characters: letters, digits or punctuation)
+ * Validate check code (6 characters: letters, digits or punctuation)
  */
 function validateCheckCode(code) {
-  const codePattern = /^.{4}$/;
+  const codePattern = /^.{6}$/;
   return codePattern.test(code);
 }
 
@@ -83,7 +83,7 @@ class QuattHomeBatteryDriver extends Driver {
       }
       
       if (!validateCheckCode(checkCode)) {
-        throw new Error('Check code ongeldig. Verwacht: 4 tekens (letters, cijfers of leestekens)');
+        throw new Error('Check code ongeldig. Verwacht: 6 tekens (letters, cijfers of leestekens)');
       }
       
       return true;
