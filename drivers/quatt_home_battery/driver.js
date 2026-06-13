@@ -51,68 +51,69 @@ class QuattHomeBatteryDriver extends Driver {
     let serialNumber  = '';
     let checkCode     = '';
 
-    // Step 1: UUID + serial number via built-in login_credentials template
-    // username = UUID, password = serial number
+    // Step 1: All credentials in one custom view
     session.setHandler('login', async (data) => {
       accessKeyUuid = (data.username || '').trim();
       serialNumber  = (data.password || '').trim();
-      this.log('Pair step 1 — UUID:', accessKeyUuid, 'SN:', serialNumber);
-      
-      if (!accessKeyUuid || !serialNumber) {
-        throw new Error('Vul UUID en serienummer in');
+      checkCode     = (data.checkCode || '').trim();
+
+      this.log('Pairing with UUID:', accessKeyUuid, 'SN:', serialNumber, 'CC:', checkCode);
+
+      if (!accessKeyUuid || !serialNumber || !checkCode) {
+        throw new Error('Vul alle velden in');
       }
-      
+
       if (!validateUuid(accessKeyUuid)) {
         throw new Error('UUID ongeldig. Verwacht formaat: BAT-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
       }
-      
+
       if (!validateSerialNumber(serialNumber)) {
         throw new Error('Serienummer ongeldig. Verwacht formaat: QODxxxxxxxxxx (12 cijfers na QOD)');
       }
-      
-      return true;
-    });
 
-    // Step 2: check code via custom HTML view
-    session.setHandler('check_code', async ({ checkCode: cc }) => {
-      checkCode = (cc || '').trim();
-      this.log('Pair step 2 — check code:', checkCode);
-      
-      if (!checkCode) {
-        throw new Error('Vul de check code in');
-      }
-      
       if (!validateCheckCode(checkCode)) {
-        throw new Error('Check code ongeldig. Verwacht: 6 tekens (letters, cijfers of leestekens)');
+        throw new Error('Check code ongeldig. Verwacht: 6 tekens');
       }
-      
+
       return true;
     });
 
-    // Step 3: pair with Quatt API and return device list
+    // Step 2: pair with Quatt API and return device list
     session.setHandler('list_devices', async () => {
       this.log('Pairing — UUID:', accessKeyUuid, 'SN:', serialNumber, 'CC:', checkCode);
 
-      let stored = {};
+      // Clear any old stored credentials for fresh pairing
       try {
-        stored = (await this.homey.settings.get(STORAGE_KEY)) || {};
+        await this.homey.settings.unset(STORAGE_KEY);
+        this.log('Cleared old credentials for fresh pairing');
       } catch (err) {
-        this.error('Failed to load stored credentials:', err.message);
-        // Continue with empty stored object, new auth will be created
+        this.log('No old credentials to clear');
       }
 
+      // Create fresh auth client (no stored tokens)
       const auth = new QuattRemoteAuthClient(this.homey);
-      auth.loadTokens(stored.idToken, stored.refreshToken);
-      auth.loadProfile(stored.firstName || 'Homey', stored.lastName || 'User');
-
       const api = new QuattHomeBatteryApiClient(auth, this.homey);
 
-      const ok = await api.authenticateAndPair(
-        accessKeyUuid, serialNumber, checkCode,
-        stored.firstName || 'Homey', stored.lastName || 'User'
-      );
+      this.log('Starting authenticateAndPair...');
+      let ok;
+      try {
+        ok = await api.authenticateAndPair(
+          accessKeyUuid, serialNumber, checkCode,
+          'Homey', 'User'
+        );
+        this.log('authenticateAndPair result:', ok);
+      } catch (err) {
+        this.error('Pairing exception:', err);
+        this.error('Stack:', err.stack);
+        throw new Error(`Koppelen mislukt: ${err.message}`);
+      }
 
-      if (!ok) throw new Error(this.homey.__('errors.pairing_failed'));
+      if (!ok) {
+        this.error('Pairing returned false (this should not happen)');
+        throw new Error('Koppelen mislukt. Controleer UUID, serienummer en check code.');
+      }
+
+      this.log('Pairing successful, installation ID:', api.installationId);
 
       await this.homey.settings.set(STORAGE_KEY, {
         idToken:      auth.idToken,

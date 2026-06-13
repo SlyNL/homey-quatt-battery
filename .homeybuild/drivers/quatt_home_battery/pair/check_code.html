@@ -26,17 +26,20 @@
   <script>
     document.getElementById('checkCode').focus();
 
-    document.getElementById('next').addEventListener('click', () => {
+    document.getElementById('next').addEventListener('click', async () => {
       const cc = document.getElementById('checkCode').value.trim();
       if (!cc) {
         document.getElementById('err').style.display = 'block';
         return;
       }
       document.getElementById('err').style.display = 'none';
-      Homey.emit('check_code', { checkCode: cc }, (err) => {
-        if (err) return Homey.alert(err.message || String(err));
-        Homey.nextView();
-      });
+
+      try {
+        await Homey.emit('check_code', { checkCode: cc });
+        await Homey.nextView();
+      } catch (err) {
+        Homey.alert(err.message || String(err));
+      }
     });
 
     document.getElementById('checkCode').addEventListener('keydown', (e) => {

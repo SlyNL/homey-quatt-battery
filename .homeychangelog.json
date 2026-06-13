@@ -33,5 +33,9 @@
   "1.0.12": {
     "en": "Check code now supports 6 characters instead of 4",
     "nl": "Controlecode ondersteunt nu 6 tekens in plaats van 4"
+  },
+  "1.0.19": {
+    "en": "Fixed pairing flow and device initialization. Simplified pairing to single screen.",
+    "nl": "Koppelingsstroom en apparaat initialisatie opgelost. Koppeling vereenvoudigd naar één scherm."
   }
 }

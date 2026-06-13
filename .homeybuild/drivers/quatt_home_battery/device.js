@@ -31,6 +31,28 @@ class QuattHomeBatteryDevice extends Device {
     this._lastSoc           = null;
     this._lastFlowDirection = null;
 
+    // Ensure all capabilities have safe default values before any poll completes,
+    // so DeviceBatteryIndicator and other UI components never receive null/undefined.
+    const defaultValues = {
+      'measure_battery': 0,
+      'measure_power': 0,
+      'meter_power.charged': 0,
+      'meter_power.discharged': 0,
+      'quatt_power_flow_direction': 'Unknown',
+      'quatt_control_action': 'Unknown',
+      'quatt_capacity_kwh': 0,
+      'quatt_savings_total': 0,
+      'quatt_savings_yesterday': 0
+    };
+
+    for (const [capId, defaultVal] of Object.entries(defaultValues)) {
+      if (this.hasCapability(capId) && this.getCapabilityValue(capId) === null) {
+        await this.setCapabilityValue(capId, defaultVal).catch(err => {
+          this.error(`Failed to set default value for ${capId}:`, err.message);
+        });
+      }
+    }
+
     // Register flow card handlers
     this._registerFlowCards();
 

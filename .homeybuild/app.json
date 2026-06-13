@@ -1,6 +1,6 @@
 {
   "id": "io.quatt.battery",
-  "version": "1.0.9",
+  "version": "1.0.19",
   "compatibility": ">=12.0.0",
   "sdk": 3,
   "name": {
@@ -105,29 +105,7 @@
       },
       "pair": [
         {
-          "id": "pair",
-          "template": "login_credentials",
-          "options": {
-            "usernameLabel": {
-              "en": "UUID (access key)",
-              "nl": "UUID (toegangssleutel)"
-            },
-            "usernamePlaceholder": {
-              "en": "BAT-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-              "nl": "BAT-a1b2c3d4-e5f6-7890-abcd-ef1234567890"
-            },
-            "passwordLabel": {
-              "en": "Serial number",
-              "nl": "Serienummer"
-            },
-            "passwordPlaceholder": {
-              "en": "QOD031024012345",
-              "nl": "QOD031024012345"
-            }
-          }
-        },
-        {
-          "id": "check_code"
+          "id": "login"
         },
         {
           "id": "list_devices",

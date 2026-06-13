@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: -apple-system, sans-serif; padding: 24px; color: #333; }
+    label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; margin-top: 16px; }
+    input { width: 100%; padding: 10px 12px; font-size: 16px; box-sizing: border-box;
+            border: 1px solid #ddd; border-radius: 8px; outline: none; }
+    input:focus { border-color: #0073e6; }
+    .hint { font-size: 12px; color: #888; margin-top: 6px; }
+    button { margin-top: 24px; width: 100%; padding: 12px; font-size: 16px;
+             background: #0073e6; color: white; border: none; border-radius: 8px;
+             cursor: pointer; font-weight: 600; }
+    button:hover { background: #005bbf; }
+    button:disabled { background: #ccc; cursor: not-allowed; }
+    .error { color: #e00; font-size: 13px; margin-top: 8px; display: none; }
+  </style>
+</head>
+<body>
+  <h3>Koppel je Quatt Home Battery</h3>
+
+  <label for="uuid">UUID (toegangssleutel)</label>
+  <input type="text" id="uuid" placeholder="BAT-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autocomplete="off">
+  <p class="hint">Te vinden in de Quatt app</p>
+
+  <label for="serial">Serienummer</label>
+  <input type="text" id="serial" placeholder="QOD123456789012" autocomplete="off">
+  <p class="hint">Op het label van de batterij (QOD + 12 cijfers)</p>
+
+  <label for="checkCode">Check code</label>
+  <input type="text" id="checkCode" placeholder="ABC123" autocomplete="off" autocapitalize="characters" maxlength="6">
+  <p class="hint">Op het label van de batterij (6 tekens)</p>
+
+  <p class="error" id="err">Vul alle velden in</p>
+  <button id="next">Koppelen</button>
+
+  <script>
+    document.getElementById('uuid').focus();
+
+    document.getElementById('next').addEventListener('click', async () => {
+      const uuid = document.getElementById('uuid').value.trim();
+      const serial = document.getElementById('serial').value.trim();
+      const checkCode = document.getElementById('checkCode').value.trim();
+
+      console.log('Login button clicked', { uuid, serial, checkCode });
+
+      if (!uuid || !serial || !checkCode) {
+        document.getElementById('err').textContent = 'Vul alle velden in';
+        document.getElementById('err').style.display = 'block';
+        return;
+      }
+
+      document.getElementById('err').style.display = 'none';
+      document.getElementById('next').disabled = true;
+      document.getElementById('next').textContent = 'Bezig met koppelen...';
+
+      try {
+        console.log('Emitting login event...');
+        const result = await Homey.emit('login', { username: uuid, password: serial, checkCode: checkCode });
+        console.log('Login result:', result);
+        console.log('Going to next view...');
+        await Homey.nextView();
+      } catch (err) {
+        console.error('Login error:', err);
+        document.getElementById('err').textContent = err.message || String(err);
+        document.getElementById('err').style.display = 'block';
+        document.getElementById('next').disabled = false;
+        document.getElementById('next').textContent = 'Koppelen';
+      }
+    });
+
+    document.getElementById('checkCode').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('next').click();
+    });
+
+    console.log('Login view loaded');
+  </script>
+</body>
+</html>
