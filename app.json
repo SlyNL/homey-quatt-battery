@@ -1,7 +1,7 @@
 {
   "id": "io.quatt.battery",
-  "version": "1.0.21",
-  "compatibility": ">=12.0.0",
+  "version": "1.0.22",
+  "compatibility": ">=12.1.0",
   "sdk": 3,
   "name": {
     "en": "Quatt Home Battery",
@@ -740,27 +740,18 @@
   },
   "widgets": {
     "battery-dashboard": {
+      "id": "battery-dashboard",
       "name": {
         "en": "Battery Dashboard",
         "nl": "Batterij Dashboard"
       },
-      "api": [
-        {
+      "api": {
+        "getState": {
           "method": "GET",
           "path": "/state"
         }
-      ],
-      "settings": [
-        {
-          "id": "deviceId",
-          "type": "device",
-          "label": {
-            "en": "Battery Device",
-            "nl": "Batterij Apparaat"
-          },
-          "filter": "driver_id=quatt_home_battery"
-        }
-      ]
+      },
+      "settings": []
     }
   }
 }
