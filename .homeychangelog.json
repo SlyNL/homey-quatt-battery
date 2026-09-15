@@ -38,8 +38,13 @@
     "en": "Fixed pairing flow and device initialization. Simplified pairing to single screen.",
     "nl": "Koppelingsstroom en apparaat initialisatie opgelost. Koppeling vereenvoudigd naar één scherm."
   },
+  "1.0.22": {
+    "en": "English:"
+  },
   "1.0.24": {
-    "en": "Added 16 new capabilities: solar production, house consumption, grid import/export, battery min/max SoC, peak charge/discharge, inverter power and savings breakdown (battery, solar, imbalance). Added Battery Dashboard widget. Improved capability labels (readable names instead of raw API values). All capability icons replaced with clear, theme-aware icons.",
-    "nl": "16 nieuwe capabilities toegevoegd: zonnepanelenproductie, huisverbruik, netimport/-export, batterij min/max SoC, piek laden/ontladen, omvormer vermogen en besparingsdetails (batterij, zonnepanelen, onbalans). Batterij Dashboard widget toegevoegd. Leesbare labels voor stuuracties en -modi. Alle capability-iconen vervangen door duidelijke, thema-bewuste iconen."
+    "en": "changelog voor v1.0.24:"
+  },
+  "1.0.25": {
+    "en": "changelog voor v1.0.24:"
   }
 }
