@@ -1,7 +1,7 @@
 {
   "id": "io.quatt.battery",
-  "version": "1.0.19",
-  "compatibility": ">=12.0.0",
+  "version": "1.0.24",
+  "compatibility": ">=12.1.0",
   "sdk": 3,
   "name": {
     "en": "Quatt Home Battery",
@@ -41,7 +41,23 @@
         "quatt_control_action",
         "quatt_savings_yesterday",
         "quatt_capacity_kwh",
-        "quatt_savings_total"
+        "quatt_savings_total",
+        "quatt_control_mode",
+        "quatt_inverter_power_kw",
+        "quatt_savings_battery",
+        "quatt_savings_solar",
+        "quatt_savings_imbalance",
+        "quatt_savings_battery_yesterday",
+        "quatt_savings_solar_yesterday",
+        "quatt_savings_imbalance_yesterday",
+        "quatt_peak_charge_kw",
+        "quatt_peak_discharge_kw",
+        "quatt_max_soc_today",
+        "quatt_min_soc_today",
+        "quatt_solar_production_kwh",
+        "quatt_house_consumption_kwh",
+        "quatt_grid_import_kwh",
+        "quatt_grid_export_kwh"
       ],
       "capabilitiesOptions": {
         "measure_battery": {
@@ -96,6 +112,102 @@
           "title": {
             "en": "Yesterday's savings",
             "nl": "Besparing gisteren"
+          }
+        },
+        "quatt_control_mode": {
+          "title": {
+            "en": "Control mode",
+            "nl": "Besturingsmodus"
+          }
+        },
+        "quatt_inverter_power_kw": {
+          "title": {
+            "en": "Inverter power",
+            "nl": "Omvormervermogen"
+          }
+        },
+        "quatt_savings_battery": {
+          "title": {
+            "en": "Battery savings",
+            "nl": "Batterijbesparing"
+          }
+        },
+        "quatt_savings_solar": {
+          "title": {
+            "en": "Solar savings",
+            "nl": "Zonnepaneelbesparing"
+          }
+        },
+        "quatt_savings_imbalance": {
+          "title": {
+            "en": "Imbalance savings",
+            "nl": "Onbalansbesparing"
+          }
+        },
+        "quatt_savings_battery_yesterday": {
+          "title": {
+            "en": "Yesterday's battery savings",
+            "nl": "Batterijbesparing gisteren"
+          }
+        },
+        "quatt_savings_solar_yesterday": {
+          "title": {
+            "en": "Yesterday's solar savings",
+            "nl": "Zonnepaneelbesparing gisteren"
+          }
+        },
+        "quatt_savings_imbalance_yesterday": {
+          "title": {
+            "en": "Yesterday's imbalance savings",
+            "nl": "Onbalansbesparing gisteren"
+          }
+        },
+        "quatt_peak_charge_kw": {
+          "title": {
+            "en": "Peak charge power today",
+            "nl": "Piek laadvermogen vandaag"
+          }
+        },
+        "quatt_peak_discharge_kw": {
+          "title": {
+            "en": "Peak discharge power today",
+            "nl": "Piek ontlaadvermogen vandaag"
+          }
+        },
+        "quatt_max_soc_today": {
+          "title": {
+            "en": "Highest SoC today",
+            "nl": "Hoogste laadtoestand vandaag"
+          }
+        },
+        "quatt_min_soc_today": {
+          "title": {
+            "en": "Lowest SoC today",
+            "nl": "Laagste laadtoestand vandaag"
+          }
+        },
+        "quatt_solar_production_kwh": {
+          "title": {
+            "en": "Solar production today",
+            "nl": "Zonproductie vandaag"
+          }
+        },
+        "quatt_house_consumption_kwh": {
+          "title": {
+            "en": "House consumption today",
+            "nl": "Huisverbruik vandaag"
+          }
+        },
+        "quatt_grid_import_kwh": {
+          "title": {
+            "en": "Grid import today",
+            "nl": "Netimport vandaag"
+          }
+        },
+        "quatt_grid_export_kwh": {
+          "title": {
+            "en": "Grid export today",
+            "nl": "Netexport vandaag"
           }
         }
       },
@@ -225,6 +337,242 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/capabilities/quatt_savings_yesterday.svg"
+    },
+    "quatt_control_mode": {
+      "type": "string",
+      "title": {
+        "en": "Control mode",
+        "nl": "Besturingsmodus"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_control_mode.svg"
+    },
+    "quatt_inverter_power_kw": {
+      "type": "number",
+      "title": {
+        "en": "Inverter power",
+        "nl": "Omvormervermogen"
+      },
+      "units": {
+        "en": "kW"
+      },
+      "decimals": 3,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_inverter.svg"
+    },
+    "quatt_savings_battery": {
+      "type": "number",
+      "title": {
+        "en": "Battery savings",
+        "nl": "Batterijbesparing"
+      },
+      "units": {
+        "en": "€"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_savings_battery.svg"
+    },
+    "quatt_savings_solar": {
+      "type": "number",
+      "title": {
+        "en": "Solar savings",
+        "nl": "Zonnepaneelbesparing"
+      },
+      "units": {
+        "en": "€"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_savings_solar.svg"
+    },
+    "quatt_savings_imbalance": {
+      "type": "number",
+      "title": {
+        "en": "Imbalance savings",
+        "nl": "Onbalansbesparing"
+      },
+      "units": {
+        "en": "€"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_savings_imbalance.svg"
+    },
+    "quatt_savings_battery_yesterday": {
+      "type": "number",
+      "title": {
+        "en": "Yesterday's battery savings",
+        "nl": "Batterijbesparing gisteren"
+      },
+      "units": {
+        "en": "€"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_savings_battery_yesterday.svg"
+    },
+    "quatt_savings_solar_yesterday": {
+      "type": "number",
+      "title": {
+        "en": "Yesterday's solar savings",
+        "nl": "Zonnepaneelbesparing gisteren"
+      },
+      "units": {
+        "en": "€"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_savings_solar_yesterday.svg"
+    },
+    "quatt_savings_imbalance_yesterday": {
+      "type": "number",
+      "title": {
+        "en": "Yesterday's imbalance savings",
+        "nl": "Onbalansbesparing gisteren"
+      },
+      "units": {
+        "en": "€"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_savings_imbalance_yesterday.svg"
+    },
+    "quatt_peak_charge_kw": {
+      "type": "number",
+      "title": {
+        "en": "Peak charge power today",
+        "nl": "Piek laadvermogen vandaag"
+      },
+      "units": {
+        "en": "kW"
+      },
+      "decimals": 3,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_battery_peak.svg"
+    },
+    "quatt_peak_discharge_kw": {
+      "type": "number",
+      "title": {
+        "en": "Peak discharge power today",
+        "nl": "Piek ontlaadvermogen vandaag"
+      },
+      "units": {
+        "en": "kW"
+      },
+      "decimals": 3,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_battery_peak.svg"
+    },
+    "quatt_max_soc_today": {
+      "type": "number",
+      "title": {
+        "en": "Highest SoC today",
+        "nl": "Hoogste laadtoestand vandaag"
+      },
+      "units": {
+        "en": "%"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_battery_max.svg"
+    },
+    "quatt_min_soc_today": {
+      "type": "number",
+      "title": {
+        "en": "Lowest SoC today",
+        "nl": "Laagste laadtoestand vandaag"
+      },
+      "units": {
+        "en": "%"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_battery_min.svg"
+    },
+    "quatt_solar_production_kwh": {
+      "type": "number",
+      "title": {
+        "en": "Solar production today",
+        "nl": "Zonproductie vandaag"
+      },
+      "units": {
+        "en": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_solar.svg"
+    },
+    "quatt_house_consumption_kwh": {
+      "type": "number",
+      "title": {
+        "en": "House consumption today",
+        "nl": "Huisverbruik vandaag"
+      },
+      "units": {
+        "en": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_house.svg"
+    },
+    "quatt_grid_import_kwh": {
+      "type": "number",
+      "title": {
+        "en": "Grid import today",
+        "nl": "Netimport vandaag"
+      },
+      "units": {
+        "en": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_grid_import.svg"
+    },
+    "quatt_grid_export_kwh": {
+      "type": "number",
+      "title": {
+        "en": "Grid export today",
+        "nl": "Netexport vandaag"
+      },
+      "units": {
+        "en": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/quatt_grid_export.svg"
     }
   },
   "flow": {
@@ -389,5 +737,21 @@
         ]
       }
     ]
+  },
+  "widgets": {
+    "battery-dashboard": {
+      "id": "battery-dashboard",
+      "name": {
+        "en": "Battery Dashboard",
+        "nl": "Batterij Dashboard"
+      },
+      "api": {
+        "getState": {
+          "method": "GET",
+          "path": "/state"
+        }
+      },
+      "settings": []
+    }
   }
 }

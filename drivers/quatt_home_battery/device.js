@@ -292,11 +292,25 @@ class QuattHomeBatteryDevice extends Device {
     }
 
     if (allData.controlAction !== undefined) {
-      await this._setCapSafe('quatt_control_action', String(allData.controlAction));
+      await this._setCapSafe('quatt_control_action', QuattHomeBatteryDevice._fmtEnum(allData.controlAction, {
+        IDLE:                  'Idle',
+        CHARGING:              'Laden',
+        DISCHARGING:           'Ontladen',
+        BALANCING_THE_GRID:    'Grid balanceren',
+        EMERGENCY_CHARGING:    'Noodladen',
+        GRID_FEED_IN:          'Net teruglevering',
+        SELF_CONSUMPTION:      'Eigenverbruik',
+      }));
     }
 
     if (allData.controlMode !== undefined) {
-      await this._setCapSafe('quatt_control_mode', String(allData.controlMode));
+      await this._setCapSafe('quatt_control_mode', QuattHomeBatteryDevice._fmtEnum(allData.controlMode, {
+        PROFIT_OPTIMIZATION:   'Winstoptimalisatie',
+        SELF_SUFFICIENCY:      'Zelfvoorzienend',
+        MANUAL:                'Handmatig',
+        GRID_SUPPORT:          'Netondersteuning',
+        ECO:                   'Eco',
+      }));
     }
 
     if (allData.capacityKWh !== undefined) {
@@ -423,6 +437,12 @@ class QuattHomeBatteryDevice extends Device {
       this.error(`setCapabilityValue(${capId}) failed:`, err.message);
     }
   }
+  static _fmtEnum(raw, map) {
+    const key = String(raw ?? '');
+    return map[key] ?? key;
+  }
+
+
 }
 
 module.exports = QuattHomeBatteryDevice;

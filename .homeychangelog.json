@@ -37,5 +37,8 @@
   "1.0.19": {
     "en": "Fixed pairing flow and device initialization. Simplified pairing to single screen.",
     "nl": "Koppelingsstroom en apparaat initialisatie opgelost. Koppeling vereenvoudigd naar één scherm."
+  },
+  "1.0.22": {
+    "en": "English:"
   }
 }
