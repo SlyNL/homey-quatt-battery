@@ -738,9 +738,8 @@
       }
     ]
   },
-  "widgets": [
-    {
-      "id": "battery-dashboard",
+  "widgets": {
+    "battery-dashboard": {
       "name": {
         "en": "Battery Dashboard",
         "nl": "Batterij Dashboard"
@@ -763,5 +762,5 @@
         }
       ]
     }
-  ]
+  }
 }
