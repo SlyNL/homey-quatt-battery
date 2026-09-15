@@ -31,18 +31,54 @@ class QuattHomeBatteryDevice extends Device {
     this._lastSoc           = null;
     this._lastFlowDirection = null;
 
+    // ── Capability migration ─────────────────────────────────────────────
+    // Existing paired devices don't automatically receive new capabilities.
+    // addCapability() is idempotent: safe to call even if already present.
+    const newCapabilities = [
+      'quatt_control_mode', 'quatt_inverter_power_kw',
+      'quatt_savings_battery', 'quatt_savings_solar', 'quatt_savings_imbalance',
+      'quatt_savings_battery_yesterday', 'quatt_savings_solar_yesterday', 'quatt_savings_imbalance_yesterday',
+      'quatt_peak_charge_kw', 'quatt_peak_discharge_kw',
+      'quatt_max_soc_today', 'quatt_min_soc_today',
+      'quatt_solar_production_kwh', 'quatt_house_consumption_kwh',
+      'quatt_grid_import_kwh', 'quatt_grid_export_kwh',
+    ];
+    for (const cap of newCapabilities) {
+      if (!this.hasCapability(cap)) {
+        await this.addCapability(cap).catch(err =>
+          this.error(`Failed to add capability ${cap}:`, err.message)
+        );
+      }
+    }
+
     // Ensure all capabilities have safe default values before any poll completes,
     // so DeviceBatteryIndicator and other UI components never receive null/undefined.
     const defaultValues = {
-      'measure_battery': 0,
-      'measure_power': 0,
-      'meter_power.charged': 0,
-      'meter_power.discharged': 0,
-      'quatt_power_flow_direction': 'Unknown',
-      'quatt_control_action': 'Unknown',
-      'quatt_capacity_kwh': 0,
-      'quatt_savings_total': 0,
-      'quatt_savings_yesterday': 0
+      'measure_battery':                   0,
+      'measure_power':                     0,
+      'meter_power.charged':               0,
+      'meter_power.discharged':            0,
+      'quatt_power_flow_direction':        'Unknown',
+      'quatt_control_action':              'Unknown',
+      'quatt_control_mode':                'Unknown',
+      'quatt_capacity_kwh':                0,
+      'quatt_inverter_power_kw':           0,
+      'quatt_savings_total':               0,
+      'quatt_savings_battery':             0,
+      'quatt_savings_solar':               0,
+      'quatt_savings_imbalance':           0,
+      'quatt_savings_yesterday':           0,
+      'quatt_savings_battery_yesterday':   0,
+      'quatt_savings_solar_yesterday':     0,
+      'quatt_savings_imbalance_yesterday': 0,
+      'quatt_peak_charge_kw':              0,
+      'quatt_peak_discharge_kw':           0,
+      'quatt_max_soc_today':               0,
+      'quatt_min_soc_today':               0,
+      'quatt_solar_production_kwh':        0,
+      'quatt_house_consumption_kwh':       0,
+      'quatt_grid_import_kwh':             0,
+      'quatt_grid_export_kwh':             0,
     };
 
     for (const [capId, defaultVal] of Object.entries(defaultValues)) {
@@ -259,8 +295,16 @@ class QuattHomeBatteryDevice extends Device {
       await this._setCapSafe('quatt_control_action', String(allData.controlAction));
     }
 
+    if (allData.controlMode !== undefined) {
+      await this._setCapSafe('quatt_control_mode', String(allData.controlMode));
+    }
+
     if (allData.capacityKWh !== undefined) {
       await this._setCapSafe('quatt_capacity_kwh', allData.capacityKWh);
+    }
+
+    if (allData.inverterPowerKw !== undefined) {
+      await this._setCapSafe('quatt_inverter_power_kw', allData.inverterPowerKw);
     }
 
     // ── Savings ───────────────────────────────────────────────────────────
@@ -269,12 +313,43 @@ class QuattHomeBatteryDevice extends Device {
       const cum  = allData.savings.cumulative || {};
       const yest = allData.savings.yesterday  || {};
 
-      if (cum.totalSavingsEurInclVat !== undefined) {
+      if (cum.totalSavingsEurInclVat !== undefined)
         await this._setCapSafe('quatt_savings_total', cum.totalSavingsEurInclVat);
-      }
-      if (yest.totalSavingsEurInclVat !== undefined) {
+      if (cum.homeBatterySavingsEurInclVat !== undefined)
+        await this._setCapSafe('quatt_savings_battery', cum.homeBatterySavingsEurInclVat);
+      if (cum.solarSavingsEurInclVat !== undefined)
+        await this._setCapSafe('quatt_savings_solar', cum.solarSavingsEurInclVat);
+      if (cum.imbalanceSavingsEurInclVat !== undefined)
+        await this._setCapSafe('quatt_savings_imbalance', cum.imbalanceSavingsEurInclVat);
+
+      if (yest.totalSavingsEurInclVat !== undefined)
         await this._setCapSafe('quatt_savings_yesterday', yest.totalSavingsEurInclVat);
-      }
+      if (yest.homeBatterySavingsEurInclVat !== undefined)
+        await this._setCapSafe('quatt_savings_battery_yesterday', yest.homeBatterySavingsEurInclVat);
+      if (yest.solarSavingsEurInclVat !== undefined)
+        await this._setCapSafe('quatt_savings_solar_yesterday', yest.solarSavingsEurInclVat);
+      if (yest.imbalanceSavingsEurInclVat !== undefined)
+        await this._setCapSafe('quatt_savings_imbalance_yesterday', yest.imbalanceSavingsEurInclVat);
+    }
+
+    // ── Insights (today's derived statistics) ────────────────────────────
+
+    if (allData.insights) {
+      const ins = allData.insights;
+      if (ins.peakChargeKw !== undefined)    await this._setCapSafe('quatt_peak_charge_kw',    ins.peakChargeKw);
+      if (ins.peakDischargeKw !== undefined) await this._setCapSafe('quatt_peak_discharge_kw', ins.peakDischargeKw);
+      if (ins.maxChargeStatePercent != null) await this._setCapSafe('quatt_max_soc_today',     ins.maxChargeStatePercent);
+      if (ins.minChargeStatePercent != null) await this._setCapSafe('quatt_min_soc_today',     ins.minChargeStatePercent);
+    }
+
+    // ── Energy flow (solar, house, grid) ─────────────────────────────────
+
+    if (allData.energyFlow) {
+      const ef = allData.energyFlow;
+      if (ef.solarProductionKWh  !== undefined) await this._setCapSafe('quatt_solar_production_kwh',  ef.solarProductionKWh);
+      if (ef.houseConsumptionKWh !== undefined) await this._setCapSafe('quatt_house_consumption_kwh', ef.houseConsumptionKWh);
+      if (ef.gridImportKWh       !== undefined) await this._setCapSafe('quatt_grid_import_kwh',       ef.gridImportKWh);
+      if (ef.gridExportKWh       !== undefined) await this._setCapSafe('quatt_grid_export_kwh',       ef.gridExportKWh);
     }
 
     // ── Cumulative energy meters (required for Homey Energy overview) ────────
