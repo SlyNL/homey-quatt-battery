@@ -300,6 +300,11 @@ class QuattHomeBatteryDevice extends Device {
         EMERGENCY_CHARGING:    'Noodladen',
         GRID_FEED_IN:          'Net teruglevering',
         SELF_CONSUMPTION:      'Eigenverbruik',
+        USING_BATTERY_ENERGY:  'Batterij energie',
+        PEAK_SHAVING:          'Piekafschaving',
+        DEMAND_RESPONSE:       'Vraagrespons',
+        FREQUENCY_REGULATION:  'Frequentieregeling',
+        VOLTAGE_SUPPORT:       'Spanningsondersteuning',
       }));
     }
 
