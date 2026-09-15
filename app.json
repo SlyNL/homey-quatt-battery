@@ -1,6 +1,6 @@
 {
   "id": "io.quatt.battery",
-  "version": "1.0.22",
+  "version": "1.0.24",
   "compatibility": ">=12.1.0",
   "sdk": 3,
   "name": {
@@ -347,7 +347,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_control_action.svg"
+      "icon": "/assets/capabilities/quatt_control_mode.svg"
     },
     "quatt_inverter_power_kw": {
       "type": "number",
@@ -362,7 +362,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_capacity_kwh.svg"
+      "icon": "/assets/capabilities/quatt_inverter.svg"
     },
     "quatt_savings_battery": {
       "type": "number",
@@ -377,7 +377,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_savings_total.svg"
+      "icon": "/assets/capabilities/quatt_savings_battery.svg"
     },
     "quatt_savings_solar": {
       "type": "number",
@@ -392,7 +392,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_savings_total.svg"
+      "icon": "/assets/capabilities/quatt_savings_solar.svg"
     },
     "quatt_savings_imbalance": {
       "type": "number",
@@ -407,7 +407,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_savings_total.svg"
+      "icon": "/assets/capabilities/quatt_savings_imbalance.svg"
     },
     "quatt_savings_battery_yesterday": {
       "type": "number",
@@ -422,7 +422,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_savings_total.svg"
+      "icon": "/assets/capabilities/quatt_savings_battery_yesterday.svg"
     },
     "quatt_savings_solar_yesterday": {
       "type": "number",
@@ -437,7 +437,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_savings_total.svg"
+      "icon": "/assets/capabilities/quatt_savings_solar_yesterday.svg"
     },
     "quatt_savings_imbalance_yesterday": {
       "type": "number",
@@ -452,7 +452,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_savings_total.svg"
+      "icon": "/assets/capabilities/quatt_savings_imbalance_yesterday.svg"
     },
     "quatt_peak_charge_kw": {
       "type": "number",
@@ -467,7 +467,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_capacity_kwh.svg"
+      "icon": "/assets/capabilities/quatt_battery_peak.svg"
     },
     "quatt_peak_discharge_kw": {
       "type": "number",
@@ -482,7 +482,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_capacity_kwh.svg"
+      "icon": "/assets/capabilities/quatt_battery_peak.svg"
     },
     "quatt_max_soc_today": {
       "type": "number",
@@ -497,7 +497,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_capacity_kwh.svg"
+      "icon": "/assets/capabilities/quatt_battery_max.svg"
     },
     "quatt_min_soc_today": {
       "type": "number",
@@ -512,7 +512,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_capacity_kwh.svg"
+      "icon": "/assets/capabilities/quatt_battery_min.svg"
     },
     "quatt_solar_production_kwh": {
       "type": "number",
@@ -527,7 +527,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_capacity_kwh.svg"
+      "icon": "/assets/capabilities/quatt_solar.svg"
     },
     "quatt_house_consumption_kwh": {
       "type": "number",
@@ -542,7 +542,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_capacity_kwh.svg"
+      "icon": "/assets/capabilities/quatt_house.svg"
     },
     "quatt_grid_import_kwh": {
       "type": "number",
@@ -557,7 +557,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_capacity_kwh.svg"
+      "icon": "/assets/capabilities/quatt_grid_import.svg"
     },
     "quatt_grid_export_kwh": {
       "type": "number",
@@ -572,7 +572,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/capabilities/quatt_capacity_kwh.svg"
+      "icon": "/assets/capabilities/quatt_grid_export.svg"
     }
   },
   "flow": {
