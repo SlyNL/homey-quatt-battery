@@ -761,12 +761,6 @@
           },
           "filter": "driver_id=quatt_home_battery"
         }
-      ],
-      "sizes": [
-        {
-          "width": 2,
-          "height": 4
-        }
       ]
     }
   ]
