@@ -39,6 +39,19 @@
     "nl": "Koppelingsstroom en apparaat initialisatie opgelost. Koppeling vereenvoudigd naar één scherm."
   },
   "1.0.22": {
-    "en": "English:"
+    "en": "Added Battery Dashboard widget for the Homey dashboard. Shows state of charge, power flow, savings, solar production, house consumption and grid import/export at a glance.",
+    "nl": "Batterij Dashboard widget toegevoegd voor het Homey dashboard. Toont laadstatus, vermogensstroom, besparingen, zonnepanelenproductie, huisverbruik en netimport/-export in één oogopslag."
+  },
+  "1.0.20": {
+    "en": "Added 16 new capabilities: solar production, house consumption, grid import/export, battery min/max SoC, peak charge/discharge, inverter power, and savings breakdown (battery, solar, imbalance — total and yesterday).",
+    "nl": "16 nieuwe capabilities toegevoegd: zonnepanelen productie, huisverbruik, netimport/-export, batterij min/max SoC, piek laden/ontladen, omvormer vermogen en besparingsdetails (batterij, zonnepanelen, onbalans — totaal en gisteren)."
+  },
+  "1.0.21": {
+    "en": "Improved capability display: readable Dutch labels for control actions and modes (e.g. 'Grid balanceren', 'Winstoptimalisatie') instead of raw API values.",
+    "nl": "Leesbare Nederlandstalige labels voor stuuracties en -modi (bijv. 'Grid balanceren', 'Winstoptimalisatie') in plaats van ruwe API-waarden."
+  },
+  "1.0.24": {
+    "en": "All capability icons replaced with clear, theme-aware icons. Each capability now has its own dedicated icon: sun for solar, house for consumption, grid arrows for import/export, piggy bank for savings, speedometer for mode, and more.",
+    "nl": "Alle capability-iconen vervangen door duidelijke, thema-bewuste iconen. Elke capability heeft nu een eigen icoon: zon voor zonnepanelen, huis voor verbruik, netsymbolen voor import/export, spaarpot voor besparingen, snelheidsmeter voor modus, en meer."
   }
 }
