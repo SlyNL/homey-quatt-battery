@@ -31,6 +31,35 @@ class QuattHomeBatteryDevice extends Device {
     this._lastSoc           = null;
     this._lastFlowDirection = null;
 
+    // ── Capability migration ───────────────────────────────────────────────
+    // Existing paired devices don't automatically receive new capabilities.
+    // addCapability() is idempotent: safe to call even if already present.
+    const newCapabilities = [
+      'quatt_control_mode',
+      'quatt_inverter_power_kw',
+      'quatt_savings_battery',
+      'quatt_savings_solar',
+      'quatt_savings_imbalance',
+      'quatt_savings_battery_yesterday',
+      'quatt_savings_solar_yesterday',
+      'quatt_savings_imbalance_yesterday',
+      'quatt_peak_charge_kw',
+      'quatt_peak_discharge_kw',
+      'quatt_max_soc_today',
+      'quatt_min_soc_today',
+      'quatt_solar_production_kwh',
+      'quatt_house_consumption_kwh',
+      'quatt_grid_import_kwh',
+      'quatt_grid_export_kwh',
+    ];
+    for (const cap of newCapabilities) {
+      if (!this.hasCapability(cap)) {
+        await this.addCapability(cap).catch(err =>
+          this.error(`Failed to add capability ${cap}:`, err.message)
+        );
+      }
+    }
+
     // Ensure measure_battery has a numeric value before any poll completes,
     // so DeviceBatteryIndicator never receives null on first render.
     if (this.getCapabilityValue('measure_battery') === null) {
