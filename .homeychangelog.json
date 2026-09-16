@@ -45,13 +45,15 @@
     "en": "changelog voor v1.0.24:"
   },
   "1.0.25": {
-    "en": "App Store review fixes: all user-facing text is now in English, Dutch kept as translation. Widget preview images added.",
-    "nl": "App Store review verbeteringen: alle gebruikerstekst is nu in het Engels, Nederlands beschikbaar als vertaling. Widget voorbeeldafbeeldingen toegevoegd."
+    "en": "changelog voor v1.0.24:"
   },
   "1.1.0": {
     "en": "✖ Error: Could not find a valid Homey App at '/Users/Sylvester':"
   },
   "2.0.0": {
     "en": "changelog voor v2.0.0: [NL] 16 nieuwe capabilities toegevoegd: zonnepanelenproductie, huisverbruik, netimport/-export, batterij min/max SoC, piek laden/ontladen, omvormer vermogen en besparingsdetails (batterij, zonnepanelen, onbalans). Batterij Dashboard widget toegevoegd. Leesbare labels voor stuuracties en -modi. Alle capability-iconen vervangen door duidelijke, thema-bewuste iconen. [UK] Added 16 new capabilities: solar production, house consumption, grid import/export, battery min/max SoC, peak charge/discharge, inverter power and savings breakdown (battery, solar, imbalance). Added Battery Dashboard widget. Improved capability labels (readable names instead of raw API values). All capability icons replaced with clear, theme-aware icons."
+  },
+  "2.0.1": {
+    "en": "🇬🇧 App Store review fixes: all user-facing text is now in English, Dutch kept as translation. Widget preview images added."
   }
 }
