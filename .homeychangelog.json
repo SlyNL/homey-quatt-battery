@@ -45,7 +45,8 @@
     "en": "changelog voor v1.0.24:"
   },
   "1.0.25": {
-    "en": "changelog voor v1.0.24:"
+    "en": "App Store review fixes: all user-facing text is now in English, Dutch kept as translation. Widget preview images added.",
+    "nl": "App Store review verbeteringen: alle gebruikerstekst is nu in het Engels, Nederlands beschikbaar als vertaling. Widget voorbeeldafbeeldingen toegevoegd."
   },
   "1.1.0": {
     "en": "✖ Error: Could not find a valid Homey App at '/Users/Sylvester':"
