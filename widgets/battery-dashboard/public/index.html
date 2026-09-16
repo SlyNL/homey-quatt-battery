@@ -34,7 +34,7 @@ body { font-family: -apple-system, system-ui, 'Segoe UI', sans-serif; background
 
 <div class="soc-block">
   <div class="soc-num" id="soc">–</div>
-  <div class="soc-label">Laadniveau</div>
+  <div class="soc-label">State of Charge</div>
 </div>
 <div class="bar-track"><div class="bar-fill" id="bar" style="width:0%"></div></div>
 <div class="status-row">
@@ -43,20 +43,20 @@ body { font-family: -apple-system, system-ui, 'Segoe UI', sans-serif; background
 </div>
 <div class="div"></div>
 <div class="stats" style="margin-bottom:8px">
-  <div class="stat"><span class="stat-lbl">Totale besparing</span><span class="stat-val euro" id="sav-total">–</span></div>
-  <div class="stat"><span class="stat-lbl">Gisteren</span><span class="stat-val euro" id="sav-yday">–</span></div>
+  <div class="stat"><span class="stat-lbl">Total savings</span><span class="stat-val euro" id="sav-total">–</span></div>
+  <div class="stat"><span class="stat-lbl">Yesterday</span><span class="stat-val euro" id="sav-yday">–</span></div>
 </div>
 <div class="div"></div>
 <div class="stats" style="margin-top:8px">
-  <div class="stat"><span class="stat-lbl">Zon vandaag</span><span class="stat-val solar" id="solar">–</span></div>
-  <div class="stat"><span class="stat-lbl">Huisverbruik</span><span class="stat-val" id="house">–</span></div>
-  <div class="stat"><span class="stat-lbl">Net import</span><span class="stat-val import" id="grid-in">–</span></div>
-  <div class="stat"><span class="stat-lbl">Net export</span><span class="stat-val export" id="grid-out">–</span></div>
+  <div class="stat"><span class="stat-lbl">Solar today</span><span class="stat-val solar" id="solar">–</span></div>
+  <div class="stat"><span class="stat-lbl">House consumption</span><span class="stat-val" id="house">–</span></div>
+  <div class="stat"><span class="stat-lbl">Grid import</span><span class="stat-val import" id="grid-in">–</span></div>
+  <div class="stat"><span class="stat-lbl">Grid export</span><span class="stat-val export" id="grid-out">–</span></div>
 </div>
 <div class="div"></div>
 <div class="stats">
-  <div class="stat"><span class="stat-lbl">Min SoC vandaag</span><span class="stat-val dim" id="min-soc">–</span></div>
-  <div class="stat"><span class="stat-lbl">Max SoC vandaag</span><span class="stat-val" id="max-soc">–</span></div>
+  <div class="stat"><span class="stat-lbl">Min SoC today</span><span class="stat-val dim" id="min-soc">–</span></div>
+  <div class="stat"><span class="stat-lbl">Max SoC today</span><span class="stat-val" id="max-soc">–</span></div>
 </div>
 
 <script type="text/javascript">
@@ -88,7 +88,7 @@ function onHomeyReady(Homey) {
     el('power').textContent = (power > 0 ? '+' : '') + fmt(power, 1);
     var status = dirStatus(data.direction, power);
     el('chip').className = 'chip ' + status;
-    el('chip-txt').textContent = { charging: 'Laden', discharging: 'Ontladen', idle: 'Idle' }[status];
+    el('chip-txt').textContent = { charging: 'Charging', discharging: 'Discharging', idle: 'Idle' }[status];
     el('sav-total').textContent = fmtEuro(data.savingsTotal);
     el('sav-yday').textContent  = fmtEuro(data.savingsYday);
     el('solar').textContent     = fmtKwh(data.solar);

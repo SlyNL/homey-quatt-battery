@@ -60,19 +60,19 @@ class QuattHomeBatteryDriver extends Driver {
       this.log('Pairing with UUID:', accessKeyUuid, 'SN:', serialNumber, 'CC:', checkCode);
 
       if (!accessKeyUuid || !serialNumber || !checkCode) {
-        throw new Error('Vul alle velden in');
+        throw new Error('Please fill in all fields');
       }
 
       if (!validateUuid(accessKeyUuid)) {
-        throw new Error('UUID ongeldig. Verwacht formaat: BAT-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+        throw new Error('Invalid UUID. Expected format: BAT-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
       }
 
       if (!validateSerialNumber(serialNumber)) {
-        throw new Error('Serienummer ongeldig. Verwacht formaat: QODxxxxxxxxxx (12 cijfers na QOD)');
+        throw new Error('Invalid serial number. Expected format: QODxxxxxxxxxx (12 digits after QOD)');
       }
 
       if (!validateCheckCode(checkCode)) {
-        throw new Error('Check code ongeldig. Verwacht: 6 tekens');
+        throw new Error('Invalid check code. Expected: 6 characters');
       }
 
       return true;
@@ -110,7 +110,7 @@ class QuattHomeBatteryDriver extends Driver {
 
       if (!ok) {
         this.error('Pairing returned false (this should not happen)');
-        throw new Error('Koppelen mislukt. Controleer UUID, serienummer en check code.');
+        throw new Error('Pairing failed. Please check UUID, serial number and check code.');
       }
 
       this.log('Pairing successful, installation ID:', api.installationId);

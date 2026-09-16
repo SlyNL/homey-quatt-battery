@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,13 +64,13 @@ body {
     <path d="M20 11h1a1 1 0 0 1 1 1v0a1 1 0 0 1-1 1h-1"/>
     <line x1="6" y1="7" x2="6" y2="5"/><line x1="10" y1="7" x2="10" y2="5"/>
   </svg>
-  <div>Selecteer een batterij<br>in de widget-instellingen</div>
+  <div>Select a battery<br>in the widget settings</div>
 </div>
 
 <div id="main">
   <div class="soc-block">
     <div class="soc-num" id="soc">–</div>
-    <div class="soc-label">Laadniveau</div>
+    <div class="soc-label">State of Charge</div>
   </div>
   <div class="bar-track"><div class="bar-fill" id="bar" style="width:0%"></div></div>
 
@@ -83,11 +83,11 @@ body {
 
   <div class="stats" style="margin-bottom:8px">
     <div class="stat">
-      <span class="stat-lbl">Totale besparing</span>
+      <span class="stat-lbl">Total savings</span>
       <span class="stat-val euro" id="sav-total">–</span>
     </div>
     <div class="stat">
-      <span class="stat-lbl">Gisteren</span>
+      <span class="stat-lbl">Yesterday</span>
       <span class="stat-val euro" id="sav-yday">–</span>
     </div>
   </div>
@@ -96,19 +96,19 @@ body {
 
   <div class="stats" style="margin-top:8px">
     <div class="stat">
-      <span class="stat-lbl">Zon vandaag</span>
+      <span class="stat-lbl">Solar today</span>
       <span class="stat-val solar" id="solar">–</span>
     </div>
     <div class="stat">
-      <span class="stat-lbl">Huisverbruik</span>
+      <span class="stat-lbl">House consumption</span>
       <span class="stat-val" id="house">–</span>
     </div>
     <div class="stat">
-      <span class="stat-lbl">Net import</span>
+      <span class="stat-lbl">Grid import</span>
       <span class="stat-val import" id="grid-in">–</span>
     </div>
     <div class="stat">
-      <span class="stat-lbl">Net export</span>
+      <span class="stat-lbl">Grid export</span>
       <span class="stat-val export" id="grid-out">–</span>
     </div>
   </div>
@@ -117,11 +117,11 @@ body {
 
   <div class="stats">
     <div class="stat">
-      <span class="stat-lbl">Min SoC vandaag</span>
+      <span class="stat-lbl">Min SoC today</span>
       <span class="stat-val dim" id="min-soc">–</span>
     </div>
     <div class="stat">
-      <span class="stat-lbl">Max SoC vandaag</span>
+      <span class="stat-lbl">Max SoC today</span>
       <span class="stat-val" id="max-soc">–</span>
     </div>
   </div>
@@ -168,7 +168,7 @@ function render(data) {
 
   const status = dirStatus(data.direction, power);
   el('chip').className   = 'chip ' + status;
-  el('chip-txt').textContent = { charging: 'Laden', discharging: 'Ontladen', idle: 'Idle' }[status];
+  el('chip-txt').textContent = { charging: 'Charging', discharging: 'Discharging', idle: 'Idle' }[status];
 
   el('sav-total').textContent = fmtEuro(data.savingsTotal);
   el('sav-yday').textContent  = fmtEuro(data.savingsYday);
