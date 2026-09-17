@@ -51,9 +51,15 @@
     "en": "✖ Error: Could not find a valid Homey App at '/Users/Sylvester':"
   },
   "2.0.0": {
-    "en": "changelog voor v2.0.0: [NL] 16 nieuwe capabilities toegevoegd: zonnepanelenproductie, huisverbruik, netimport/-export, batterij min/max SoC, piek laden/ontladen, omvormer vermogen en besparingsdetails (batterij, zonnepanelen, onbalans). Batterij Dashboard widget toegevoegd. Leesbare labels voor stuuracties en -modi. Alle capability-iconen vervangen door duidelijke, thema-bewuste iconen. [UK] Added 16 new capabilities: solar production, house consumption, grid import/export, battery min/max SoC, peak charge/discharge, inverter power and savings breakdown (battery, solar, imbalance). Added Battery Dashboard widget. Improved capability labels (readable names instead of raw API values). All capability icons replaced with clear, theme-aware icons."
+    "en": "Major update. Added 16 new capabilities: solar production, house consumption, grid import/export, battery min/max SoC, peak charge/discharge, inverter power and savings breakdown per category (battery, solar, imbalance — total and yesterday). Added Battery Dashboard widget showing all key stats at a glance. Readable labels for control actions and modes. Dedicated icons for every capability.",
+    "nl": "Grote update. 16 nieuwe capabilities toegevoegd: zonnepanelenproductie, huisverbruik, netimport/-export, batterij min/max SoC, piek laden/ontladen, omvormer vermogen en besparingsdetails per categorie (batterij, zonnepanelen, onbalans — totaal en gisteren). Batterij Dashboard widget toegevoegd met alle kerncijfers in één oogopslag. Leesbare labels voor stuuracties en -modi. Eigen icoon voor elke capability."
   },
   "2.0.1": {
-    "en": "🇬🇧 App Store review fixes: all user-facing text is now in English, Dutch kept as translation. Widget preview images added."
+    "en": "All user-facing text is now in English, with Dutch available as a translation. Widget preview images added.",
+    "nl": "Alle gebruikerstekst is nu in het Engels, Nederlands beschikbaar als vertaling. Widget voorbeeldafbeeldingen toegevoegd."
+  },
+  "2.0.2": {
+    "en": "App icon updated to a clean line-based design (transparent background, no fill). Widget preview images are now abstract shape illustrations without text, as required by App Store guidelines.",
+    "nl": "App-icoon bijgewerkt naar een strak lijngebaseerd ontwerp (transparante achtergrond, geen vulling). Widget voorbeeldafbeeldingen zijn nu abstracte vormen zonder tekst, conform de App Store richtlijnen."
   }
 }
