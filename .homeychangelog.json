@@ -50,16 +50,8 @@
   "1.1.0": {
     "en": "✖ Error: Could not find a valid Homey App at '/Users/Sylvester':"
   },
-  "2.0.0": {
-    "en": "Major update. Added 16 new capabilities: solar production, house consumption, grid import/export, battery min/max SoC, peak charge/discharge, inverter power and savings breakdown per category (battery, solar, imbalance — total and yesterday). Added Battery Dashboard widget showing all key stats at a glance. Readable labels for control actions and modes. Dedicated icons for every capability.",
-    "nl": "Grote update. 16 nieuwe capabilities toegevoegd: zonnepanelenproductie, huisverbruik, netimport/-export, batterij min/max SoC, piek laden/ontladen, omvormer vermogen en besparingsdetails per categorie (batterij, zonnepanelen, onbalans — totaal en gisteren). Batterij Dashboard widget toegevoegd met alle kerncijfers in één oogopslag. Leesbare labels voor stuuracties en -modi. Eigen icoon voor elke capability."
-  },
-  "2.0.1": {
-    "en": "All user-facing text is now in English, with Dutch available as a translation. Widget preview images added.",
-    "nl": "Alle gebruikerstekst is nu in het Engels, Nederlands beschikbaar als vertaling. Widget voorbeeldafbeeldingen toegevoegd."
-  },
   "2.0.2": {
-    "en": "App icon updated to a clean line-based design (transparent background, no fill). Widget preview images are now abstract shape illustrations without text, as required by App Store guidelines.",
-    "nl": "App-icoon bijgewerkt naar een strak lijngebaseerd ontwerp (transparante achtergrond, geen vulling). Widget voorbeeldafbeeldingen zijn nu abstracte vormen zonder tekst, conform de App Store richtlijnen."
+    "en": "Major update with 16 new capabilities and a dashboard widget. New capabilities: solar production (kWh), house consumption (kWh), grid import (kWh), grid export (kWh), inverter power (kW), peak charge power (kW), peak discharge power (kW), min and max state of charge today (%), total savings (€), savings yesterday (€), solar savings (€), solar savings yesterday (€), battery savings (€), battery savings yesterday (€), imbalance savings (€), imbalance savings yesterday (€). New: Battery Dashboard widget for the Homey dashboard showing state of charge, power flow, savings, solar, house consumption and grid at a glance. Improved: readable labels for control actions and modes instead of raw API values. Improved: dedicated icon for each capability.",
+    "nl": "Grote update met 16 nieuwe capabilities en een dashboard widget. Nieuwe capabilities: zonnepanelenproductie (kWh), huisverbruik (kWh), netimport (kWh), netexport (kWh), omvormer vermogen (kW), piek laadvermogen (kW), piek ontlaadvermogen (kW), min en max laadniveau vandaag (%), totale besparing (€), besparing gisteren (€), zonnebesparing (€), zonnebesparing gisteren (€), batterijbesparing (€), batterijbesparing gisteren (€), onbalansbesparing (€), onbalansbesparing gisteren (€). Nieuw: Batterij Dashboard widget voor het Homey dashboard met laadniveau, vermogensstroom, besparingen, zon, huisverbruik en net in één oogopslag. Verbeterd: leesbare labels voor stuuracties en -modi in plaats van ruwe API-waarden. Verbeterd: eigen icoon voor elke capability."
   }
 }
