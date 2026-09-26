@@ -1,47 +1,70 @@
-# CLAUDE.md
+# CLAUDE.md — Quatt Home Battery (Homey-app)
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+> ## ⚠️ EERSTE TAAK IN DEZE MAP: dit bestand vullen
+>
+> Dit bestand is op 2026-09-26 leeggemaakt. Er stond een letterlijke kopie in van
+> de `CLAUDE.md` van **Drukwerkdeal Order** — `DWO_VERSION`, de Printdeal API,
+> WooCommerce-hooks, `php -l` als smoketest, een kleurenpalet. Dit project is
+> **geen WordPress-plugin en bevat geen PHP**, dus daar klopte niets van.
+>
+> **Voordat je hier aan een taak begint:** vul de secties hieronder, en **vraag de
+> eigenaar** wat je niet uit de code kunt aflezen. Begin niet aan de inhoudelijke
+> taak voordat dit klopt.
+>
+> De algemene werkwijze in `/Users/Sylvester/VSC/.claude/CLAUDE.md` geldt hier
+> deels: **diagnose op bewijs** en **een check moet kunnen falen** zijn
+> taal-onafhankelijk en gelden wél. De afrondvolgorde daar noemt `php -l` en een
+> plugin-header; hier geldt `npm run lint` en `app.json`.
 
-## Na elke taak — vaste volgorde
+## Wat dit is
 
-1. **Smoketest:** `npm run smoketest`
-2. **Sanity check:** `npm run build`
-3. **Bump:** `npm version patch` (of minor/major naar gelang de wijziging)
-4. **Specs:** werk relevante readme en bestanden in `/specs` bij
+Een **Homey-app** (Athom) die in de **Homey App Store** staat. Node.js met de
+Homey SDK. Geen WordPress, geen PHP.
 
-Voor deze plugin (geen npm) betekent dit:
-1. **Smoketest:** `php -l` op gewijzigde PHP-bestanden
-2. **Sanity check:** logica-trace (transients, AJAX-flows, cache-invalidatie)
-3. **Bump:** verhoog `Version:` in de plugin-header én `DWO_VERSION` in `drukwerkdeal-order.php` — beide tegelijk, zelfde getal, formaat `0.xx`
-4. **Specs/README:** werk `README.md` changelog-sectie bij
+Geverifieerd uit `app.json` en `package.json`:
 
-## Versieconventie
+| Veld | Waarde |
+| --- | --- |
+| App-id | `io.quatt.battery` |
+| Naam | Quatt Home Battery |
+| Versie | 2.0.2 |
+| Homey SDK | 3 |
+| Lint/validate | `npm run lint` → `homey app validate` |
+| Driver | `drivers/quatt_home_battery` |
 
-Formaat: `0.major_minor` — geen semver. Elke functionele wijziging = nieuwe versie. Zie `feedback_dwo_versioning.md` in memory.
+Er is een `.homeychangelog.json` met per-versie changelog-teksten (Engels). Uit de
+inhoud blijkt dat deze app naar de store gaat: een entry luidt "Fixes to deploy in
+store". Dit is daarmee het enige project hier met een **publieke distributie naar
+een externe store** — dat betekent reviewrichtlijnen van Athom, en dat een fout
+buiten je eigen beheer terechtkomt.
+
+## Afrondvolgorde voor dit project
+
+Afwijkend van de master, want er is geen PHP:
+
+1. **Smoketest:** `npm run lint` (= `homey app validate`). Dat valideert `app.json`,
+   drivers en capabilities — dit is het equivalent van `php -l` hier.
+2. **Sanity:** *nog te bepalen; er zijn geen tests. Zie de vragen hieronder.*
+3. **Bump:** `version` in `app.json`, semver (nu `2.0.2`).
+4. **Changelog:** voeg een entry toe in `.homeychangelog.json` onder het nieuwe
+   versienummer. Let op: die teksten zijn **publiek zichtbaar in de store**, dus
+   schrijf ze voor eindgebruikers, niet als commitbericht.
+5. **Commit/push:** zie master. Nog te bevestigen of hier een GitHub-repo bij hoort.
+
+## Nog te vullen — vraag dit aan de eigenaar
+
+- [ ] **Is er een GitHub-repo?** Er is een `CONTRIBUTING.md`, wat op een publieke
+      repo duidt. Welke? En hoort daar een release-flow bij (tag → store-upload)?
+- [ ] **Hoe publiceer je?** `homey app publish` handmatig, of via CI?
+- [ ] **Tests.** Er zijn geen tests, alleen `homey app validate`. Wil je die
+      erbij? De master-regel "een check moet kunnen falen" heeft nu niets om op
+      te grijpen.
+- [ ] **Staat dit in de publieke store** onder jouw naam, en zijn er gebruikers?
+      Dat bepaalt hoe voorzichtig een wijziging moet zijn.
+- [ ] **Relatie met Quatt.** Is dit een officiële integratie of een eigen
+      koppeling op hun API? Bij het laatste: wat gebeurt er als hun API wijzigt?
 
 ## Architectuur
 
-**Bootstrap:** `drukwerkdeal-order.php` definieert `DWO_VERSION`, `DWO_DIR`, `DWO_URL` en laadt alle klassen via `require_once`.
-
-**API-laag:** `DWO_Api_Client` doet alle Printdeal v3 REST-calls. JWT-token wordt gecached als transient (`dwo_jwt_*`, 50 min). Alle product/order/webhook-methoden gaan via `request()` of `webhook_request()`.
-
-**WooCommerce-koppeling (`DWO_Woo_Integration`):** centrale klasse. Registreert:
-- Productmeta-box (SKU, markup, volgorde, splits-config)
-- Frontend configurator (`woocommerce_before_add_to_cart_button`) — rendert lege div, JS laadt data via AJAX
-- AJAX-handlers: `dwo_frontend_product` (productdata + volgorde), `dwo_frontend_validate` (prijs live), `dwo_admin_get_attrs` (sortable list), `dwo_frontend_artwork_upload`
-- Cart-validatie en cart-item-data
-
-**Caching — twee lagen:**
-- Server: transient `dwo_cfg_{md5(sku_productid)}`, TTL 6 uur. Wordt gebust in `save_product_field()` bij elke SKU- of volgorde-wijziging.
-- Browser: `sessionStorage` met sleutel `dwo_cfg_{sku}_{productid}_{DWO_VERSION}`. Auto-bust bij versie-bump.
-
-**Volgorde configurator:** `_dwo_attr_order` (JSON-array van attribuutnamen) wordt opgeslagen als post meta. `ajax_frontend_product()` sorteert hierop; fallback is `DWO_Api_Client::NL_ATTRIBUTE_ORDER`. De admin-drag-UI schrijft de volgorde naar een hidden input; bij opslaan wordt de transient direct verwijderd.
-
-**Webhooks (`DWO_Webhooks`):** REST-endpoint `POST /wp-json/dwo/v1/webhook`. Verificatie via HMAC-SHA256 (`X-Printdeal-Signature`) of legacy `?secret=` parameter. Verwerkt `order.created` en `orderline.status.updated`. Custom WC-orderstatus: `wc-dwd-shipped`.
-
-**E-mails (`WC_Email_DWO_Status`):** geregistreerd als WooCommerce e-mailklasse. Getriggerd vanuit `DWO_Webhooks::handle_status_updated()` bij `artwork-approved`, `in-production`, `shipped`, `delivered`, `cancelled`.
-
-## Uitbreidingspunten
-
-- **`dwo_attribute_nl_order` filter:** overschrijf de standaard NL-sorteervolgorde van attributen wanneer geen custom volgorde is opgeslagen.
-- **`DWO_Api_Client::NL_ATTRIBUTE_ORDER`** en **`DELIVERY_API_NAMES`** zijn constants die de attribuut-herkenning sturen.
+*Nog niet beschreven. Kern zit in `app.js` en `drivers/quatt_home_battery/` —
+beschrijf dat pas nadat je het gelezen hebt.*
